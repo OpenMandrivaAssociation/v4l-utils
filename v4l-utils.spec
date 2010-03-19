@@ -3,26 +3,34 @@
 %define develname	%mklibname v4l -d
 %define wrappersname	%mklibname v4l-wrappers
 
-Name:		libv4l
-Version:	0.6.4
+Name:		v4l-utils
+Version:	0.7.91
 Release:	%mkrel 1
-Summary:	Thin abstraction layer for video4linux2 devices
+Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
-URL:		http://hansdegoede.livejournal.com/3636.html
-Source:		http://people.fedoraproject.org/~jwrdegoede/libv4l-%{version}.tar.gz
+URL:		http://git.linuxtv.org/v4l-utils.git
+Source:		http://people.fedoraproject.org/~jwrdegoede/v4l-utils-%{version}.tar.bz2
 BuildRequires:	glibc-devel
+BuildRequires:	qt4-devel
+Obsoletes:	libv4l <= 0.6.4-1mdv2010.1
 Requires:	%{wrappersname} >= %{version}-%{release}
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
-libv4l is a collection of libraries which adds a thin abstraction layer on top
-of video4linux2 devices. The purpose of this (thin) layer is to make it easy for
-application writers to support a wide variety of devices without having to write
-separate code for different devices in the same class.
+v4l-utils is the combination of various v4l and dvb utilities which
+used to be part of the v4l-dvb mercurial kernel tree. 
 
 %files
-#metapackage, no files
+%defattr(0755,root,root,0755)
+%{_bindir}/cx18-ctl
+%{_bindir}/decode_tm6000
+%{_bindir}/ivtv-ctl
+%{_bindir}/qv4l2
+%{_bindir}/v4l2-compliance
+%{_bindir}/v4l2-ctl
+%{_bindir}/v4l2-sysfs-path
+%{_sbindir}/v4l2-dbg
 
 %package -n	%{wrappersname}
 Summary:	Wrappers for v4l applications
@@ -35,19 +43,20 @@ v4l1 applications and support for various pixelformats to v4l2 applications.
 
 %files -n	%{wrappersname}
 %defattr(0644,root,root,0755)
-%dir %{_libdir}/%{name}
-%{_libdir}/%{name}/v4l1compat.so
-%{_libdir}/%{name}/v4l2convert.so
-%{_libdir}/%{name}/*-decomp
+%dir %{_libdir}/libv4l
+%{_libdir}/libv4l/v4l1compat.so
+%{_libdir}/libv4l/v4l2convert.so
+%{_libdir}/libv4l/*-decomp
 
 %package -n	%{libname}
-Summary:	Main libraries for libv4l
+Summary:	Thin abstraction layer for video4linux2 devices
 Group:		System/Libraries
-Requires:	%name >= %version
 
 %description -n %{libname}
-This package contains the library needed to run programs dynamically
-linked with libv4l.
+libv4l is a collection of libraries which adds a thin abstraction layer on top
+of video4linux2 devices. The purpose of this (thin) layer is to make it easy for
+application writers to support a wide variety of devices without having to write
+separate code for different devices in the same class.
 
 %files -n	%{libname}
 %defattr(0644,root,root,0755)
@@ -67,15 +76,15 @@ libv4l.
 
 %files -n	%{develname}
 %defattr(0644,root,root,0755)
-%{_includedir}/%{name}1.h
-%{_includedir}/%{name}2.h
-%{_includedir}/%{name}convert.h
-%{_libdir}/%{name}1.so
-%{_libdir}/%{name}2.so
-%{_libdir}/%{name}convert.so
-%{_libdir}/pkgconfig/%{name}1.pc
-%{_libdir}/pkgconfig/%{name}2.pc
-%{_libdir}/pkgconfig/%{name}convert.pc
+%{_includedir}/libv4l1.h
+%{_includedir}/libv4l2.h
+%{_includedir}/libv4lconvert.h
+%{_libdir}/libv4l1.so
+%{_libdir}/libv4l2.so
+%{_libdir}/libv4lconvert.so
+%{_libdir}/pkgconfig/libv4l1.pc
+%{_libdir}/pkgconfig/libv4l2.pc
+%{_libdir}/pkgconfig/libv4lconvert.pc
 
 %prep
 %setup -q
