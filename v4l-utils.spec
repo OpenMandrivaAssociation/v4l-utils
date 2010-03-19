@@ -50,7 +50,7 @@ v4l1 applications and support for various pixelformats to v4l2 applications.
 %package -n	%{libname}
 Summary:	Thin abstraction layer for video4linux2 devices
 Group:		System/Libraries
-Requires:	%name >= %version
+Requires:	%{name} >= %{version}
 
 %description -n %{libname}
 libv4l is a collection of libraries which adds a thin abstraction layer on top
