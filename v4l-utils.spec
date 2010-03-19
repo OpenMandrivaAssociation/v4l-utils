@@ -11,6 +11,7 @@ License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://git.linuxtv.org/v4l-utils.git
 Source:		http://people.fedoraproject.org/~jwrdegoede/v4l-utils-%{version}.tar.bz2
+BuildRequires:	libsysfs-devel
 BuildRequires:	qt4-devel
 Obsoletes:	libv4l <= 0.6.4-1mdv2010.1
 Requires:	%{wrappersname} >= %{version}-%{release}
