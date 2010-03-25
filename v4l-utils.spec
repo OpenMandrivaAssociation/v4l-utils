@@ -5,7 +5,7 @@
 
 Name:		v4l-utils
 Version:	0.7.91
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
@@ -26,11 +26,21 @@ used to be part of the v4l-dvb mercurial kernel tree.
 %{_bindir}/cx18-ctl
 %{_bindir}/decode_tm6000
 %{_bindir}/ivtv-ctl
-%{_bindir}/qv4l2
 %{_bindir}/v4l2-compliance
 %{_bindir}/v4l2-ctl
 %{_bindir}/v4l2-sysfs-path
 %{_sbindir}/v4l2-dbg
+
+%package -n	v4l-utils-qt4
+Summary:	qt4 tools for v4l applications
+Group:		System/Libraries
+Conflicts:	libv4l <= 0.7.91-1mdv2010.1
+
+%description -n	v4l-utils-qt4
+
+%files -n	v4l-utils-qt4
+%defattr(0755,root,root,0755)
+%{_bindir}/qv4l2
 
 %package -n	%{wrappersname}
 Summary:	Wrappers for v4l applications
