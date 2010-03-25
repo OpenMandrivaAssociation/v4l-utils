@@ -5,7 +5,7 @@
 
 Name:		v4l-utils
 Version:	0.7.91
-Release:	%mkrel 2
+Release:	%mkrel 3
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
@@ -37,6 +37,7 @@ Group:		System/Libraries
 Conflicts:	libv4l <= 0.7.91-1mdv2010.1
 
 %description -n	v4l-utils-qt4
+v4l-utils-qt4 is a QT4 gui for the v4l-utils tools
 
 %files -n	v4l-utils-qt4
 %defattr(0755,root,root,0755)
