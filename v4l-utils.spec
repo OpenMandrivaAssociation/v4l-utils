@@ -5,7 +5,7 @@
 
 Name:		v4l-utils
 Version:	0.7.91
-Release:	%mkrel 3
+Release:	%mkrel 4
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
@@ -13,6 +13,7 @@ URL:		http://git.linuxtv.org/v4l-utils.git
 Source:		http://people.fedoraproject.org/~jwrdegoede/v4l-utils-%{version}.tar.bz2
 BuildRequires:	libsysfs-devel
 BuildRequires:	qt4-devel
+Conflicts:	ivtv-utils <= 1.4.0-1mdv2010.1
 Obsoletes:	libv4l <= 0.6.4-1mdv2010.1
 Requires:	%{wrappersname} >= %{version}-%{release}
 BuildRoot:	%{_tmppath}/%{name}-%{version}
@@ -25,7 +26,6 @@ used to be part of the v4l-dvb mercurial kernel tree.
 %defattr(0755,root,root,0755)
 %{_bindir}/cx18-ctl
 %{_bindir}/decode_tm6000
-%{_bindir}/ivtv-ctl
 %{_bindir}/v4l2-compliance
 %{_bindir}/v4l2-ctl
 %{_bindir}/v4l2-sysfs-path
@@ -108,6 +108,9 @@ libv4l.
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
 %makeinstall_std PREFIX="%{_prefix}" LIBDIR="%{_libdir}"
+
+# already provided by ivtv-utils package, more uptodate/complete there
+rm -f %{buildroot}%{_bindir}/ivtv-ctl
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
