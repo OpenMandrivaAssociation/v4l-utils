@@ -5,7 +5,7 @@
 
 Name:		v4l-utils
 Version:	0.7.91
-Release:	%mkrel 4
+Release:	%mkrel 5
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
@@ -81,6 +81,7 @@ Summary:	Development files from libv4l
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
+Provides:	libv4l-devel = %{version}-%{release}
 
 %description -n %{develname}
 This package contains the development files needed to build programs that use
