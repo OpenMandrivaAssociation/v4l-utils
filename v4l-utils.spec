@@ -4,14 +4,13 @@
 %define wrappersname	%mklibname v4l-wrappers
 
 Name:		v4l-utils
-Version:	0.7.91
-Release:	%mkrel 6
+Version:	0.8.0
+Release:	%mkrel 1
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://git.linuxtv.org/v4l-utils.git
 Source:		http://people.fedoraproject.org/~jwrdegoede/v4l-utils-%{version}.tar.bz2
-Patch0:		v4l-utils-0.7.91-update-upside-down-device-table.patch
 BuildRequires:	libsysfs-devel
 BuildRequires:	qt4-devel
 Conflicts:	ivtv-utils <= 1.4.0-1mdv2010.1
@@ -27,6 +26,7 @@ used to be part of the v4l-dvb mercurial kernel tree.
 %defattr(0755,root,root,0755)
 %{_bindir}/cx18-ctl
 %{_bindir}/decode_tm6000
+%{_bindir}/ir-keytable
 %{_bindir}/v4l2-compliance
 %{_bindir}/v4l2-ctl
 %{_bindir}/v4l2-sysfs-path
@@ -102,9 +102,9 @@ libv4l.
 
 %prep
 %setup -q
-%patch0 -p1 -b .update-upside-down-device-table
 
 %build
+%setup_compile_flags
 %make CFLAGS="%{optflags}" PREFIX="%{_prefix}" LIBDIR="%{_libdir}"
 
 %install
