@@ -4,7 +4,7 @@
 %define wrappersname	%mklibname v4l-wrappers
 
 Name:		v4l-utils
-Version:	0.8.1
+Version:	0.8.3
 Release:	%mkrel 1
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
@@ -24,6 +24,10 @@ used to be part of the v4l-dvb mercurial kernel tree.
 
 %files
 %defattr(0755,root,root,0755)
+%dir %{_sysconfdir}/rc_keymaps
+%config(noreplace) %{_sysconfdir}/rc_keymaps/*
+%config(noreplace) %{_sysconfdir}/rc_maps.cfg
+%config(noreplace) %{_sysconfdir}/udev/rules.d/70-infrared.rules
 %{_bindir}/cx18-ctl
 %{_bindir}/decode_tm6000
 %{_bindir}/ir-keytable
@@ -31,6 +35,7 @@ used to be part of the v4l-dvb mercurial kernel tree.
 %{_bindir}/v4l2-ctl
 %{_bindir}/v4l2-sysfs-path
 %{_sbindir}/v4l2-dbg
+%{_mandir}/man1/ir-keytable.1.*
 
 %package -n	v4l-utils-qt4
 Summary:	qt4 tools for v4l applications
@@ -93,6 +98,7 @@ libv4l.
 %{_includedir}/libv4l1.h
 %{_includedir}/libv4l2.h
 %{_includedir}/libv4lconvert.h
+%{_includedir}/libv4l1-videodev.h
 %{_libdir}/libv4l1.so
 %{_libdir}/libv4l2.so
 %{_libdir}/libv4lconvert.so
