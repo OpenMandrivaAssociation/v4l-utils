@@ -4,8 +4,8 @@
 %define wrappersname	%mklibname v4l-wrappers
 
 Name:		v4l-utils
-Version:	0.8.3
-Release:	%mkrel 2
+Version:	0.8.4
+Release:	%mkrel 1
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
@@ -13,8 +13,8 @@ URL:		http://git.linuxtv.org/v4l-utils.git
 Source:		http://linuxtv.org/downloads/%name/%name-%{version}.tar.bz2
 BuildRequires:	libsysfs-devel
 BuildRequires:	qt4-devel
-Conflicts:	ivtv-utils <= 1.4.0-1mdv2010.1
-Obsoletes:	libv4l <= 0.6.4-1mdv2010.1
+Conflicts:	ivtv-utils < 1.4.0-2
+Obsoletes:	libv4l < 0.6.4-2
 Requires:	%{wrappersname} >= %{version}-%{release}
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
@@ -27,7 +27,7 @@ used to be part of the v4l-dvb mercurial kernel tree.
 %dir %{_sysconfdir}/rc_keymaps
 %config(noreplace) %{_sysconfdir}/rc_keymaps/*
 %config(noreplace) %{_sysconfdir}/rc_maps.cfg
-%config(noreplace) %{_sysconfdir}/udev/rules.d/70-infrared.rules
+%config(noreplace) /lib/udev/rules.d/70-infrared.rules
 %{_bindir}/cx18-ctl
 %{_bindir}/decode_tm6000
 %{_bindir}/ir-keytable
@@ -46,8 +46,10 @@ Conflicts:	libv4l <= 0.7.91-1mdv2010.1
 v4l-utils-qt4 is a QT4 gui for the v4l-utils tools
 
 %files -n	v4l-utils-qt4
-%defattr(0755,root,root,0755)
+%defattr(0644,root,root,0755)
 %{_bindir}/qv4l2
+%{_datadir}/applications/qv4l2.desktop
+%{_iconsdir}/hicolor/scalable/apps/qv4l2.svg
 
 %package -n	%{wrappersname}
 Summary:	Wrappers for v4l applications
