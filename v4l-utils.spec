@@ -4,7 +4,7 @@
 %define wrappersname	%mklibname v4l-wrappers
 
 Name:		v4l-utils
-Version:	0.8.4
+Version:	0.8.5
 Release:	%mkrel 1
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
@@ -49,7 +49,7 @@ v4l-utils-qt4 is a QT4 gui for the v4l-utils tools
 %defattr(0644,root,root,0755)
 %{_bindir}/qv4l2
 %{_datadir}/applications/qv4l2.desktop
-%{_iconsdir}/hicolor/scalable/apps/qv4l2.svg
+%{_iconsdir}/hicolor/*/apps/qv4l2.*
 
 %package -n	%{wrappersname}
 Summary:	Wrappers for v4l applications
