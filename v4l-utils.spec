@@ -5,7 +5,7 @@
 
 Name:		v4l-utils
 Version:	0.8.5
-Release:	%mkrel 1
+Release:	2
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
@@ -16,14 +16,12 @@ BuildRequires:	qt4-devel
 Conflicts:	ivtv-utils < 1.4.0-2
 Obsoletes:	libv4l < 0.6.4-2
 Requires:	%{wrappersname} >= %{version}-%{release}
-BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 v4l-utils is the combination of various v4l and dvb utilities which
 used to be part of the v4l-dvb mercurial kernel tree. 
 
 %files
-%defattr(0755,root,root,0755)
 %dir %{_sysconfdir}/rc_keymaps
 %config(noreplace) %{_sysconfdir}/rc_keymaps/*
 %config(noreplace) %{_sysconfdir}/rc_maps.cfg
