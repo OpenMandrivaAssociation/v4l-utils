@@ -12,7 +12,7 @@ Group:		System/Libraries
 URL:		http://git.linuxtv.org/v4l-utils.git
 Source0:	http://linuxtv.org/downloads/%name/%name-%{version}.tar.bz2
 BuildRequires:	libsysfs-devel
-BuildRequires:	qt4-devel
+BuildRequires:	qt4-devel jpeg-devel
 Conflicts:	ivtv-utils < 1.4.0-2
 Obsoletes:	libv4l < 0.6.4-2
 Requires:	%{wrappersname} >= %{version}-%{release}
