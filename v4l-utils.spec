@@ -4,13 +4,13 @@
 %define wrappersname	%mklibname v4l-wrappers
 
 Name:		v4l-utils
-Version:	0.8.5
-Release:	2
+Version:	0.8.6
+Release:	1
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://git.linuxtv.org/v4l-utils.git
-Source:		http://linuxtv.org/downloads/%name/%name-%{version}.tar.bz2
+Source0:	http://linuxtv.org/downloads/%name/%name-%{version}.tar.bz2
 BuildRequires:	libsysfs-devel
 BuildRequires:	qt4-devel
 Conflicts:	ivtv-utils < 1.4.0-2
@@ -114,13 +114,7 @@ libv4l.
 %make CFLAGS="%{optflags}" PREFIX="%{_prefix}" LIBDIR="%{_libdir}"
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
-
 %makeinstall_std PREFIX="%{_prefix}" LIBDIR="%{_libdir}"
 
 # already provided by ivtv-utils package, more uptodate/complete there
 rm -f %{buildroot}%{_bindir}/ivtv-ctl
-
-%clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
-
