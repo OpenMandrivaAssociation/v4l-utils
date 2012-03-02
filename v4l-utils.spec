@@ -5,12 +5,12 @@
 
 Name:		v4l-utils
 Version:	0.8.6
-Release:	1
+Release:	2
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://git.linuxtv.org/v4l-utils.git
-Source0:	http://linuxtv.org/downloads/%name/%name-%{version}.tar.bz2
+Source0:	http://linuxtv.org/downloads/%{name}/%{name}-%{version}.tar.bz2
 BuildRequires:	libsysfs-devel
 BuildRequires:	qt4-devel jpeg-devel
 Conflicts:	ivtv-utils < 1.4.0-2
@@ -44,7 +44,6 @@ Conflicts:	libv4l <= 0.7.91-1mdv2010.1
 v4l-utils-qt4 is a QT4 gui for the v4l-utils tools
 
 %files -n	v4l-utils-qt4
-%defattr(0644,root,root,0755)
 %{_bindir}/qv4l2
 %{_datadir}/applications/qv4l2.desktop
 %{_iconsdir}/hicolor/*/apps/qv4l2.*
@@ -59,7 +58,6 @@ This package contains wrapper libraries that adds v4l2 device compatibility for
 v4l1 applications and support for various pixelformats to v4l2 applications.
 
 %files -n	%{wrappersname}
-%defattr(0644,root,root,0755)
 %dir %{_libdir}/libv4l
 %{_libdir}/libv4l/v4l1compat.so
 %{_libdir}/libv4l/v4l2convert.so
@@ -77,7 +75,6 @@ application writers to support a wide variety of devices without having to write
 separate code for different devices in the same class.
 
 %files -n	%{libname}
-%defattr(0644,root,root,0755)
 %{_libdir}/libv4l1.so.%{major}*
 %{_libdir}/libv4l2.so.%{major}*
 %{_libdir}/libv4lconvert.so.%{major}*
@@ -94,7 +91,6 @@ This package contains the development files needed to build programs that use
 libv4l.
 
 %files -n	%{develname}
-%defattr(0644,root,root,0755)
 %{_includedir}/libv4l1.h
 %{_includedir}/libv4l2.h
 %{_includedir}/libv4lconvert.h
