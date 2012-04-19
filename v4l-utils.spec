@@ -4,8 +4,8 @@
 %define wrappersname	%mklibname v4l-wrappers
 
 Name:		v4l-utils
-Version:	0.8.6
-Release:	2
+Version:	0.8.8
+Release:	1
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
@@ -31,6 +31,10 @@ used to be part of the v4l-dvb mercurial kernel tree.
 %{_bindir}/ir-keytable
 %{_bindir}/v4l2-compliance
 %{_bindir}/v4l2-ctl
+%{_bindir}/dvb-fe-tool
+%{_bindir}/dvb-format-convert
+%{_bindir}/dvbv5-scan
+%{_bindir}/dvbv5-zap
 %{_bindir}/v4l2-sysfs-path
 %{_sbindir}/v4l2-dbg
 %{_mandir}/man1/ir-keytable.1.*
