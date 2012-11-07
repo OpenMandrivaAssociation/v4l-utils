@@ -110,11 +110,14 @@ libv4l.
 %setup -q
 
 %build
-%setup_compile_flags
-%make CFLAGS="%{optflags}" PREFIX="%{_prefix}" LIBDIR="%{_libdir}"
+%configure2_5x \
+	--disable-static \
+	--disable-rpath
+
+%make
 
 %install
-%makeinstall_std PREFIX="%{_prefix}" LIBDIR="%{_libdir}"
+%makeinstall_std
 
 # already provided by ivtv-utils package, more uptodate/complete there
 rm -f %{buildroot}%{_bindir}/ivtv-ctl
