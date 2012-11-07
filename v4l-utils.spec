@@ -1,10 +1,10 @@
-%define major		0
-%define libname		%mklibname v4l %{major}
-%define develname	%mklibname v4l -d
-%define wrappersname	%mklibname v4l-wrappers
+%define major 0
+%define libname %mklibname v4l %{major}
+%define develname %mklibname v4l -d
+%define wrappersname %mklibname v4l-wrappers
 
 Name:		v4l-utils
-Version:	0.8.8
+Version:	0.9.1
 Release:	1
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
@@ -39,7 +39,7 @@ used to be part of the v4l-dvb mercurial kernel tree.
 %{_sbindir}/v4l2-dbg
 %{_mandir}/man1/ir-keytable.1.*
 
-%package -n	v4l-utils-qt4
+%package -n v4l-utils-qt4
 Summary:	qt4 tools for v4l applications
 Group:		System/Libraries
 Conflicts:	libv4l <= 0.7.91-1mdv2010.1
@@ -52,7 +52,7 @@ v4l-utils-qt4 is a QT4 gui for the v4l-utils tools
 %{_datadir}/applications/qv4l2.desktop
 %{_iconsdir}/hicolor/*/apps/qv4l2.*
 
-%package -n	%{wrappersname}
+%package -n %{wrappersname}
 Summary:	Wrappers for v4l applications
 Group:		System/Libraries
 Conflicts:	libv4l <= 0.5.9-1mdv2010.0
@@ -61,13 +61,13 @@ Conflicts:	libv4l <= 0.5.9-1mdv2010.0
 This package contains wrapper libraries that adds v4l2 device compatibility for
 v4l1 applications and support for various pixelformats to v4l2 applications.
 
-%files -n	%{wrappersname}
+%files -n %{wrappersname}
 %dir %{_libdir}/libv4l
 %{_libdir}/libv4l/v4l1compat.so
 %{_libdir}/libv4l/v4l2convert.so
 %{_libdir}/libv4l/*-decomp
 
-%package -n	%{libname}
+%package -n %{libname}
 Summary:	Thin abstraction layer for video4linux2 devices
 Group:		System/Libraries
 Requires:	%{name} >= %{version}
@@ -78,12 +78,12 @@ of video4linux2 devices. The purpose of this (thin) layer is to make it easy for
 application writers to support a wide variety of devices without having to write
 separate code for different devices in the same class.
 
-%files -n	%{libname}
+%files -n %{libname}
 %{_libdir}/libv4l1.so.%{major}*
 %{_libdir}/libv4l2.so.%{major}*
 %{_libdir}/libv4lconvert.so.%{major}*
 
-%package -n	%{develname}
+%package -n %{develname}
 Summary:	Development files from libv4l
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
@@ -94,7 +94,7 @@ Provides:	libv4l-devel = %{version}-%{release}
 This package contains the development files needed to build programs that use
 libv4l.
 
-%files -n	%{develname}
+%files -n %{develname}
 %{_includedir}/libv4l1.h
 %{_includedir}/libv4l2.h
 %{_includedir}/libv4lconvert.h
