@@ -12,6 +12,7 @@ Group:		System/Libraries
 URL:		http://git.linuxtv.org/v4l-utils.git
 Source0:	http://linuxtv.org/downloads/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		fix-missing-includes.patch
+Patch1:		openat.patch
 BuildRequires:	sysfsutils-devel
 BuildRequires:	qt4-devel jpeg-devel
 Conflicts:	ivtv-utils < 1.4.0-2
@@ -112,10 +113,11 @@ programs that use libv4l.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %setup_compile_flags
-%make CFLAGS="%{optflags}" PREFIX="%{_prefix}" LIBDIR="%{_libdir}"
+%make CFLAGS="%{optflags}" PREFIX="%{_prefix}" LIBDIR="%{_libdir}" CC=%{__cc}
 
 %install
 %makeinstall_std PREFIX="%{_prefix}" LIBDIR="%{_libdir}"
