@@ -68,8 +68,8 @@ programs that use libv4l.
 %setup -q
 
 %build
-%setup_compile_flags
-%make CFLAGS="%{optflags}" PREFIX="%{_prefix}" LIBDIR="%{_libdir}" CC=%{__cc}
+%configure2_5x
+%make
 
 %install
 %makeinstall_std PREFIX="%{_prefix}" LIBDIR="%{_libdir}"
