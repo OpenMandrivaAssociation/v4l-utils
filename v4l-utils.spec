@@ -12,7 +12,6 @@ Group:		System/Libraries
 URL:		http://git.linuxtv.org/v4l-utils.git
 Source0:	http://linuxtv.org/downloads/%{name}/%{name}-%{version}.tar.bz2
 #Patch0:		fix-missing-includes.patch
-Patch1:		openat.patch
 BuildRequires:	sysfsutils-devel
 BuildRequires:	qt4-devel
 BuildRequires:	jpeg-devel
@@ -67,7 +66,6 @@ programs that use libv4l.
 
 %prep
 %setup -q
-%patch1 -p1
 
 %build
 %setup_compile_flags
