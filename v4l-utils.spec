@@ -15,6 +15,8 @@ Source0:	http://linuxtv.org/downloads/%{name}/%{name}-%{version}.tar.bz2
 BuildRequires:	sysfsutils-devel
 BuildRequires:	qt4-devel
 BuildRequires:	jpeg-devel
+BuildRequires:	pkgconfig(udev)
+BuildRequires:	pkgconfig(glu)
 Conflicts:	ivtv-utils < 1.4.0-2
 Obsoletes:	libv4l < 0.6.4-2
 Requires:	%{wrappersname} >= %{version}-%{release}
@@ -68,7 +70,8 @@ programs that use libv4l.
 %setup -q
 
 %build
-%configure2_5x
+%configure2_5x \
+		--disable-static
 %make
 
 %install
@@ -82,9 +85,11 @@ rm -f %{buildroot}%{_bindir}/ivtv-ctl
 %config(noreplace) %{_sysconfdir}/rc_keymaps/*
 %config(noreplace) %{_sysconfdir}/rc_maps.cfg
 %config(noreplace) /lib/udev/rules.d/70-infrared.rules
+/lib/udev/rc_keymaps/*
 %{_bindir}/cx18-ctl
 %{_bindir}/decode_tm6000
 %{_bindir}/ir-keytable
+%{_bindir}/rds-ctl
 %{_bindir}/v4l2-compliance
 %{_bindir}/v4l2-ctl
 %{_bindir}/dvb-fe-tool
@@ -102,23 +107,20 @@ rm -f %{buildroot}%{_bindir}/ivtv-ctl
 
 %files -n %{wrappersname}
 %dir %{_libdir}/libv4l
+%dir %{_libdir}/libv4l/plugins
 %{_libdir}/libv4l/v4l1compat.so
 %{_libdir}/libv4l/v4l2convert.so
 %{_libdir}/libv4l/*-decomp
+%{_libdir}/libv4l/plugins/libv4l-mplane.so
 
 %files -n %{libname}
 %{_libdir}/libv4l1.so.%{major}*
-%{_libdir}/libv4l2.so.%{major}*
+%{_libdir}/libv4l2*.so.%{major}*
+%{_libdir}/libdvbv5.so.%{major}*
 %{_libdir}/libv4lconvert.so.%{major}*
 
 %files -n %{develname}
-%{_includedir}/libv4l1.h
-%{_includedir}/libv4l2.h
-%{_includedir}/libv4lconvert.h
-%{_includedir}/libv4l1-videodev.h
-%{_libdir}/libv4l1.so
-%{_libdir}/libv4l2.so
-%{_libdir}/libv4lconvert.so
-%{_libdir}/pkgconfig/libv4l1.pc
-%{_libdir}/pkgconfig/libv4l2.pc
-%{_libdir}/pkgconfig/libv4lconvert.pc
+%{_includedir}/*.h
+%{_libdir}/*.so
+%{_libdir}/pkgconfig/*.pc
+
