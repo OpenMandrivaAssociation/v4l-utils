@@ -81,8 +81,6 @@ programs that use libv4l.
 rm -f %{buildroot}%{_bindir}/ivtv-ctl
 
 %files
-%dir %{_sysconfdir}/rc_keymaps
-%config(noreplace) %{_sysconfdir}/rc_keymaps/*
 %config(noreplace) %{_sysconfdir}/rc_maps.cfg
 %config(noreplace) /lib/udev/rules.d/70-infrared.rules
 /lib/udev/rc_keymaps/*
