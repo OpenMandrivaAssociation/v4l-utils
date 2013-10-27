@@ -4,8 +4,8 @@
 %define wrappersname %mklibname v4l-wrappers
 
 Name:		v4l-utils
-Version:	0.9.5
-Release:	1
+Version:	1.0.0
+Release:	2
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
@@ -71,6 +71,7 @@ programs that use libv4l.
 
 %build
 %configure2_5x \
+		--enable-libdvbv5 \
 		--disable-static
 %make
 

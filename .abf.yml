@@ -1,2 +1,4 @@
+removed_sources:
+  v4l-utils-0.9.5.tar.bz2: 2c5e157b3fac42837c2622ade58d4799aa67abdb
 sources:
-  "v4l-utils-0.9.5.tar.bz2": 2c5e157b3fac42837c2622ade58d4799aa67abdb
+  v4l-utils-1.0.0.tar.bz2: 647afb543097c5d60f9b6bdc4e23d40d9d177d22
