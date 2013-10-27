@@ -5,7 +5,7 @@
 
 Name:		v4l-utils
 Version:	1.0.0
-Release:	2
+Release:	3
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
@@ -37,6 +37,7 @@ v4l-utils-qt4 is a QT4 gui for the v4l-utils tools.
 Summary:	Wrappers for v4l applications
 Group:		System/Libraries
 Conflicts:	libv4l <= 0.5.9-1mdv2010.0
+Provides:	v4l-wrappers
 
 %description -n %{wrappersname}
 This package contains wrapper libraries that adds v4l2 device
