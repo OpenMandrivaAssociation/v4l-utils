@@ -5,7 +5,7 @@
 
 Name:		v4l-utils
 Version:	1.0.0
-Release:	4
+Release:	5
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
