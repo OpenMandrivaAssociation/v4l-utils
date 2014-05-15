@@ -4,12 +4,12 @@
 %define wrappersname %mklibname v4l-wrappers
 
 Name:		v4l-utils
-Version:	1.0.0
-Release:	7
+Version:	1.0.1
+Release:	1
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
-URL:		http://git.linuxtv.org/v4l-utils.git
+Url:		http://git.linuxtv.org/v4l-utils.git
 Source0:	http://linuxtv.org/downloads/%{name}/%{name}-%{version}.tar.bz2
 #Patch0:		fix-missing-includes.patch
 BuildRequires:	sysfsutils-devel
