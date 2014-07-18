@@ -4,13 +4,13 @@
 %define wrappersname %mklibname v4l-wrappers
 
 Name:		v4l-utils
-Version:	1.0.1
-Release:	3
+Version:	1.2.1
+Release:	1
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://git.linuxtv.org/v4l-utils.git
-Source0:	http://linuxtv.org/downloads/%{name}/%{name}-%{version}.tar.bz2
+Source0:	http://linuxtv.org/downloads/v4l-utils/%{name}-%{version}.tar.bz2
 #Patch0:		fix-missing-includes.patch
 BuildRequires:	sysfsutils-devel
 BuildRequires:	qt4-devel
@@ -26,7 +26,7 @@ v4l-utils is the combination of various v4l and dvb utilities which
 used to be part of the v4l-dvb mercurial kernel tree. 
 
 %package -n	v4l-utils-qt4
-Summary:	qt4 tools for v4l applications
+Summary:	Qt4 tools for v4l applications
 Group:		System/Libraries
 Conflicts:	libv4l <= 0.7.91-1mdv2010.1
 
@@ -123,4 +123,3 @@ rm -f %{buildroot}%{_bindir}/ivtv-ctl
 %{_includedir}/*.h
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
-
