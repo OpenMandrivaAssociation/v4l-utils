@@ -11,6 +11,7 @@ License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://git.linuxtv.org/v4l-utils.git
 Source0:	http://linuxtv.org/downloads/v4l-utils/%{name}-%{version}.tar.bz2
+Source100: %{name}.rpmlintrc
 #Patch0:		fix-missing-includes.patch
 BuildRequires:	sysfsutils-devel
 BuildRequires:	qt4-devel
