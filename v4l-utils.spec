@@ -5,7 +5,7 @@
 
 Name:		v4l-utils
 Version:	1.3.90
-Release:	1
+Release:	2
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
@@ -101,57 +101,12 @@ rm -f %{buildroot}%{_bindir}/ivtv-ctl
 %{_sbindir}/v4l2-dbg
 %{_mandir}/man1/ir-keytable.1.*
 %{_bindir}/media-ctl
-%{_includedir}/libdvbv5/atsc_eit.h
-%{_includedir}/libdvbv5/atsc_header.h
-%{_includedir}/libdvbv5/cat.h
-%{_includedir}/libdvbv5/crc32.h
-%{_includedir}/libdvbv5/desc_atsc_service_location.h
-%{_includedir}/libdvbv5/desc_ca.h
-%{_includedir}/libdvbv5/desc_ca_identifier.h
-%{_includedir}/libdvbv5/desc_cable_delivery.h
-%{_includedir}/libdvbv5/desc_event_extended.h
-%{_includedir}/libdvbv5/desc_event_short.h
-%{_includedir}/libdvbv5/desc_extension.h
-%{_includedir}/libdvbv5/desc_frequency_list.h
-%{_includedir}/libdvbv5/desc_hierarchy.h
-%{_includedir}/libdvbv5/desc_isdbt_delivery.h
-%{_includedir}/libdvbv5/desc_language.h
-%{_includedir}/libdvbv5/desc_logical_channel.h
-%{_includedir}/libdvbv5/desc_network_name.h
-%{_includedir}/libdvbv5/desc_partial_reception.h
-%{_includedir}/libdvbv5/desc_sat.h
-%{_includedir}/libdvbv5/desc_service.h
-%{_includedir}/libdvbv5/desc_service_list.h
-%{_includedir}/libdvbv5/desc_service_location.h
-%{_includedir}/libdvbv5/desc_t2_delivery.h
-%{_includedir}/libdvbv5/desc_terrestrial_delivery.h
-%{_includedir}/libdvbv5/desc_ts_info.h
-%{_includedir}/libdvbv5/descriptors.h
-%{_includedir}/libdvbv5/dvb-demux.h
-%{_includedir}/libdvbv5/dvb-fe.h
-%{_includedir}/libdvbv5/dvb-file.h
-%{_includedir}/libdvbv5/dvb-frontend.h
-%{_includedir}/libdvbv5/dvb-log.h
-%{_includedir}/libdvbv5/dvb-sat.h
-%{_includedir}/libdvbv5/dvb-scan.h
-%{_includedir}/libdvbv5/dvb-v5-std.h
-%{_includedir}/libdvbv5/eit.h
-%{_includedir}/libdvbv5/header.h
-%{_includedir}/libdvbv5/mgt.h
-%{_includedir}/libdvbv5/mpeg_es.h
-%{_includedir}/libdvbv5/mpeg_pes.h
-%{_includedir}/libdvbv5/mpeg_ts.h
-%{_includedir}/libdvbv5/nit.h
-%{_includedir}/libdvbv5/pat.h
-%{_includedir}/libdvbv5/pmt.h
-%{_includedir}/libdvbv5/sdt.h
-%{_includedir}/libdvbv5/vct.h
-%{_mandir}/man1/qv4l2.1*
 
 %files -n v4l-utils-qt4
 %{_bindir}/qv4l2
 %{_datadir}/applications/qv4l2.desktop
 %{_iconsdir}/hicolor/*/apps/qv4l2.*
+%{_mandir}/man1/qv4l2.1*
 
 %files -n %{wrappersname}
 %dir %{_libdir}/libv4l
@@ -169,5 +124,6 @@ rm -f %{buildroot}%{_bindir}/ivtv-ctl
 
 %files -n %{develname}
 %{_includedir}/*.h
+%{_includedir}/libdvbv5
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
