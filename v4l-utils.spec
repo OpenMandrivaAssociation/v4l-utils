@@ -101,6 +101,10 @@ rm -f %{buildroot}%{_bindir}/ivtv-ctl
 %{_sbindir}/v4l2-dbg
 %{_mandir}/man1/ir-keytable.1.*
 %{_bindir}/media-ctl
+%{_mandir}/man1/dvb-fe-tool.1*
+%{_mandir}/man1/dvb-format-convert.1*
+%{_mandir}/man1/dvbv5-scan.1*
+%{_mandir}/man1/dvbv5-zap.1*
 
 %files -n v4l-utils-qt4
 %{_bindir}/qv4l2
