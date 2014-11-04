@@ -5,7 +5,7 @@
 
 Name:		v4l-utils
 Version:	1.6.0
-Release:	1
+Release:	2
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
@@ -72,7 +72,7 @@ programs that use libv4l.
 %setup -q
 
 %build
-%configure2_5x \
+%configure \
 		--enable-libdvbv5 \
 		--disable-static
 %make
@@ -86,6 +86,7 @@ rm -f %{buildroot}%{_bindir}/ivtv-ctl
 %files
 %config(noreplace) %{_sysconfdir}/rc_maps.cfg
 %config(noreplace) /lib/udev/rules.d/70-infrared.rules
+%dir /lib/udev/rc_keymaps
 /lib/udev/rc_keymaps/*
 %{_bindir}/cx18-ctl
 %{_bindir}/decode_tm6000
