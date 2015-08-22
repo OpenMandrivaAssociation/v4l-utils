@@ -2,6 +2,7 @@
 %define libname %mklibname v4l %{major}
 %define develname %mklibname v4l -d
 %define wrappersname %mklibname v4l-wrappers
+%define _disable_rebuild_configure 1
 
 Name:		v4l-utils
 Version:	1.6.3
