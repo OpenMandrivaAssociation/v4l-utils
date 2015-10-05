@@ -94,9 +94,9 @@ rm -f %{buildroot}%{_bindir}/ivtv-ctl
 
 %find_lang libdvbv5
 %find_lang v4l-utils
+cat *.lang >%{name}-all.lang
 
-
-%files -f v4l-utils.lang, libdvbv5.lang
+%files -f %{name}-all.lang
 %config(noreplace) %{_sysconfdir}/rc_maps.cfg
 %config(noreplace) /lib/udev/rules.d/70-infrared.rules
 %dir /lib/udev/rc_keymaps
