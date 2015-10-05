@@ -5,8 +5,8 @@
 %define _disable_rebuild_configure 1
 
 Name:		v4l-utils
-Version:	1.6.3
-Release:	3
+Version:	1.8.0
+Release:	1
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
@@ -14,11 +14,16 @@ Url:		http://git.linuxtv.org/v4l-utils.git
 Source0:	http://linuxtv.org/downloads/v4l-utils/%{name}-%{version}.tar.bz2
 Source100:	%{name}.rpmlintrc
 #Patch0:		fix-missing-includes.patch
-BuildRequires:	sysfsutils-devel
-BuildRequires:	qt4-devel
 BuildRequires:	jpeg-devel
-BuildRequires:	pkgconfig(udev)
+BuildRequires:	pkgconfig(x11)
+BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glu)
+BuildRequires:	pkgconfig(Qt5Core)
+BuildRequires:	pkgconfig(Qt5Gui)
+BuildRequires:	pkgconfig(Qt5Widgets)
+BuildRequires:	pkgconfig(Qt5OpenGL)
+BuildRequires:	pkgconfig(alsa)
+BuildRequires:	pkgconfig(libudev)
 Conflicts:	ivtv-utils < 1.4.0-2
 Obsoletes:	libv4l < 0.6.4-2
 Requires:	%{wrappersname} >= %{version}-%{release}
@@ -74,8 +79,10 @@ programs that use libv4l.
 
 %build
 %configure \
-		--enable-libdvbv5 \
-		--disable-static
+	--enable-libdvbv5 \
+	--with-libudev \
+	--disable-static
+
 %make
 
 %install
