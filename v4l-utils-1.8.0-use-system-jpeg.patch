@@ -1,0 +1,81 @@
+diff -Naur v4l-utils-1.8.0/lib/libv4lconvert/Makefile.am v4l-utils-1.8.0.tpg/lib/libv4lconvert/Makefile.am
+--- v4l-utils-1.8.0/lib/libv4lconvert/Makefile.am	2015-09-19 19:10:45.000000000 +0000
++++ v4l-utils-1.8.0.tpg/lib/libv4lconvert/Makefile.am	2015-10-05 03:54:10.896426474 +0000
+@@ -18,9 +18,6 @@
+   processing/gamma.c processing/libv4lprocessing.h processing/libv4lprocessing-priv.h \
+   helper.c helper-funcs.h libv4lconvert-priv.h libv4lsyscall-priv.h \
+   tinyjpeg.h tinyjpeg-internal.h
+-if HAVE_JPEG
+-libv4lconvert_la_SOURCES += jpeg_memsrcdest.c jpeg_memsrcdest.h
+-endif
+ libv4lconvert_la_CPPFLAGS = $(CFLAG_VISIBILITY) $(ENFORCE_LIBV4L_STATIC)
+ libv4lconvert_la_LDFLAGS = $(LIBV4LCONVERT_VERSION) -lrt -lm $(JPEG_LIBS) $(ENFORCE_LIBV4L_STATIC)
+ 
+diff -Naur v4l-utils-1.8.0/lib/libv4lconvert/Makefile.in v4l-utils-1.8.0.tpg/lib/libv4lconvert/Makefile.in
+--- v4l-utils-1.8.0/lib/libv4lconvert/Makefile.in	2015-09-19 19:28:04.000000000 +0000
++++ v4l-utils-1.8.0.tpg/lib/libv4lconvert/Makefile.in	2015-10-05 03:55:11.113045596 +0000
+@@ -93,7 +93,6 @@
+ host_triplet = @host@
+ @WITH_LIBV4L_TRUE@libv4lconvertpriv_PROGRAMS = ov511-decomp$(EXEEXT) \
+ @WITH_LIBV4L_TRUE@	ov518-decomp$(EXEEXT)
+-@HAVE_JPEG_TRUE@am__append_1 = jpeg_memsrcdest.c jpeg_memsrcdest.h
+ subdir = lib/libv4lconvert
+ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
+ am__aclocal_m4_deps = $(top_srcdir)/m4/ac_define_dir.m4 \
+@@ -153,9 +152,8 @@
+ 	processing/libv4lprocessing.h \
+ 	processing/libv4lprocessing-priv.h helper.c helper-funcs.h \
+ 	libv4lconvert-priv.h libv4lsyscall-priv.h tinyjpeg.h \
+-	tinyjpeg-internal.h jpeg_memsrcdest.c jpeg_memsrcdest.h
++	tinyjpeg-internal.h
+ am__dirstamp = $(am__leading_dot)dirstamp
+-@HAVE_JPEG_TRUE@am__objects_1 = libv4lconvert_la-jpeg_memsrcdest.lo
+ am_libv4lconvert_la_OBJECTS = libv4lconvert_la-libv4lconvert.lo \
+ 	libv4lconvert_la-tinyjpeg.lo libv4lconvert_la-sn9c10x.lo \
+ 	libv4lconvert_la-sn9c20x.lo libv4lconvert_la-pac207.lo \
+@@ -680,7 +678,6 @@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libv4lconvert_la-jidctflt.Plo@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libv4lconvert_la-jl2005bcd.Plo@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libv4lconvert_la-jpeg.Plo@am__quote@
+-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libv4lconvert_la-jpeg_memsrcdest.Plo@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libv4lconvert_la-jpgl.Plo@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libv4lconvert_la-libv4lconvert.Plo@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libv4lconvert_la-mr97310a.Plo@am__quote@
+@@ -923,13 +920,6 @@
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+ @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libv4lconvert_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libv4lconvert_la-helper.lo `test -f 'helper.c' || echo '$(srcdir)/'`helper.c
+ 
+-libv4lconvert_la-jpeg_memsrcdest.lo: jpeg_memsrcdest.c
+-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libv4lconvert_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libv4lconvert_la-jpeg_memsrcdest.lo -MD -MP -MF $(DEPDIR)/libv4lconvert_la-jpeg_memsrcdest.Tpo -c -o libv4lconvert_la-jpeg_memsrcdest.lo `test -f 'jpeg_memsrcdest.c' || echo '$(srcdir)/'`jpeg_memsrcdest.c
+-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libv4lconvert_la-jpeg_memsrcdest.Tpo $(DEPDIR)/libv4lconvert_la-jpeg_memsrcdest.Plo
+-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='jpeg_memsrcdest.c' object='libv4lconvert_la-jpeg_memsrcdest.lo' libtool=yes @AMDEPBACKSLASH@
+-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libv4lconvert_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libv4lconvert_la-jpeg_memsrcdest.lo `test -f 'jpeg_memsrcdest.c' || echo '$(srcdir)/'`jpeg_memsrcdest.c
+-
+ mostlyclean-libtool:
+ 	-rm -f *.lo
+ 
+diff -Naur v4l-utils-1.8.0/lib/libv4lconvert/jl2005bcd.c v4l-utils-1.8.0.tpg/lib/libv4lconvert/jl2005bcd.c
+--- v4l-utils-1.8.0/lib/libv4lconvert/jl2005bcd.c	2015-09-19 18:54:17.000000000 +0000
++++ v4l-utils-1.8.0.tpg/lib/libv4lconvert/jl2005bcd.c	2015-10-05 03:53:56.033027284 +0000
+@@ -33,7 +33,7 @@
+ 
+ #ifdef HAVE_JPEG
+ #include "libv4lconvert-priv.h"
+-#include "jpeg_memsrcdest.h"
++#include <jpeglib.h>
+ #include "libv4lsyscall-priv.h"
+ 
+ 
+diff -Naur v4l-utils-1.8.0/lib/libv4lconvert/jpeg.c v4l-utils-1.8.0.tpg/lib/libv4lconvert/jpeg.c
+--- v4l-utils-1.8.0/lib/libv4lconvert/jpeg.c	2015-09-19 18:54:17.000000000 +0000
++++ v4l-utils-1.8.0.tpg/lib/libv4lconvert/jpeg.c	2015-10-05 03:53:21.322095864 +0000
+@@ -25,7 +25,7 @@
+ #include <stdlib.h>
+ #include "libv4lconvert-priv.h"
+ #ifdef HAVE_JPEG
+-#include "jpeg_memsrcdest.h"
++#include <jpeglib.h>
+ #endif
+ 
+ int v4lconvert_decode_jpeg_tinyjpeg(struct v4lconvert_data *data,
