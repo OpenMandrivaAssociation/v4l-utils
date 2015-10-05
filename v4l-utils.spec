@@ -92,7 +92,11 @@ programs that use libv4l.
 # already provided by ivtv-utils package, more uptodate/complete there
 rm -f %{buildroot}%{_bindir}/ivtv-ctl
 
-%files
+%find_lang libdvbv5
+%find_lang v4l-utils
+
+
+%files -f v4l-utils.lang libdvbv5.lang
 %config(noreplace) %{_sysconfdir}/rc_maps.cfg
 %config(noreplace) /lib/udev/rules.d/70-infrared.rules
 %dir /lib/udev/rc_keymaps
@@ -115,6 +119,8 @@ rm -f %{buildroot}%{_bindir}/ivtv-ctl
 %{_mandir}/man1/dvb-format-convert.1*
 %{_mandir}/man1/dvbv5-scan.1*
 %{_mandir}/man1/dvbv5-zap.1*
+%{_mandir}/man1/v4l2-compliance.1.*
+%{_mandir}/man1/v4l2-ctl.1.*
 
 %files -n v4l-utils-qt4
 %{_bindir}/qv4l2
