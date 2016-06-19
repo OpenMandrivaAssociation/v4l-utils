@@ -5,8 +5,8 @@
 %define _disable_rebuild_configure 1
 
 Name:		v4l-utils
-Version:	1.8.0
-Release:	4
+Version:	1.10.1
+Release:	1
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
