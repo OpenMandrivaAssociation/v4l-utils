@@ -79,7 +79,7 @@ programs that use libv4l.
 %apply_patches
 
 %build
-%configure \
+CXXFLAGS="%{optflags} -std=gnu++14" %configure \
 	--enable-libdvbv5 \
 	--with-libudev \
 	--disable-static
