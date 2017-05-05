@@ -18,7 +18,7 @@ Source100:	%{name}.rpmlintrc
 Patch0:		v4l-utils-1.12.3-pthread.patch
 Patch1:		v4l-utils-1.8.0-use-system-jpeg.patch
 BuildRequires:	jpeg-devel
-BuildRequires:	libsysfs-devel
+BuildRequires:	sysfsutils-devel
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glu)
