@@ -3,6 +3,7 @@
 %define develname %mklibname v4l -d
 %define wrappersname %mklibname v4l-wrappers
 %define _disable_rebuild_configure 1
+%define _disable_ld_no_undefined 1
 %define _disable_lto 1
 
 Name:		v4l-utils
