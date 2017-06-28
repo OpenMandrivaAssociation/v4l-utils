@@ -7,7 +7,7 @@
 %define _disable_lto 1
 
 Name:		v4l-utils
-Version:	1.12.3
+Version:	1.12.5
 Release:	1
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
@@ -36,6 +36,24 @@ Requires:	%{wrappersname} >= %{version}-%{release}
 v4l-utils is the combination of various v4l and dvb utilities which
 used to be part of the v4l-dvb mercurial kernel tree. 
 
+%define dvbv5 %mklibname dvbv5 %{major}
+%define v4l1 %mklibname v4l1 %{major}
+%define v4l2 %mklibname v4l2 %{major}
+%define v4l2rds %mklibname v4l2rds %{major}
+%define v4lconvert %mklibname v4lconvert %{major}
+
+%define dvbv5d %mklibname dvbv5 -d
+%define v4l1d %mklibname v4l1 -d
+%define v4l2d %mklibname v4l2 -d
+%define v4l2rdsd %mklibname v4l2rds -d
+%define v4lconvertd %mklibname v4lconvert -d
+
+%libpackage dvbv5 %{major}
+%libpackage v4l1 %{major}
+%libpackage v4l2 %{major}
+%libpackage v4l2rds %{major}
+%libpackage v4lconvert %{major}
+
 %package -n	v4l-utils-qt4
 Summary:	Qt4 tools for v4l applications
 Group:		System/Libraries
@@ -59,6 +77,11 @@ pixelformats to v4l2 applications.
 Summary:	Thin abstraction layer for video4linux2 devices
 Group:		System/Libraries
 Requires:	%{name} >= %{version}
+Requires:	%{dvbv5} = %{EVRD}
+Requires:	%{v4l1} = %{EVRD}
+Requires:	%{v4l2} = %{EVRD}
+Requires:	%{v4l2rds} = %{EVRD}
+Requires:	%{v4lconvert} = %{EVRD}
 
 %description -n %{libname}
 libv4l is a collection of libraries which adds a thin abstraction
@@ -67,10 +90,77 @@ layer is to make it easy for application writers to support a wide
 variety of devices without having to write separate code for
 different devices in the same class.
 
+%package -n	%{dvbv5d}
+Summary:	Development files for libdvbv5
+Group:		Development/C
+Requires:	%{dvbv5} = %{EVRD}
+
+%description -n	%{dvbv5d}
+Development files for libdvbv5
+
+%files -n %{dvbv5d}
+%{_includedir}/libdvbv5
+%{_libdir}/libdvbv5.so
+%{_libdir}/pkgconfig/libdvbv5.pc
+
+%package -n	%{v4l1d}
+Summary:	Development files for libv4l1
+Group:		Development/C
+
+%description -n	%{v4l1d}
+Development files for libv4l1
+
+%files -n %{v4l1d}
+%{_includedir}/libv4l1.h
+%{_includedir}/libv4l1-videodev.h
+%{_libdir}/libv4l1.so
+%{_libdir}/pkgconfig/libv4l1.pc
+
+%package -n	%{v4l2d}
+Summary:	Development files for libv4l2
+Group:		Development/C
+
+%description -n	%{v4l2d}
+Development files for libv4l2
+
+%files -n %{v4l2d}
+%{_includedir}/libv4l2.h
+%{_includedir}/libv4l-plugin.h
+%{_libdir}/libv4l2.so
+%{_libdir}/pkgconfig/libv4l2.pc
+
+%package -n	%{v4l2rdsd}
+Summary:	Development files for libv4l2rds
+Group:		Development/C
+
+%description -n	%{v4l2rdsd}
+Development files for libv4l2rds
+
+%files -n %{v4l2rdsd}
+%{_includedir}/libv4l2rds.h
+%{_libdir}/libv4l2rds.so
+%{_libdir}/pkgconfig/libv4l2rds.pc
+
+%package -n	%{v4lconvertd}
+Summary:	Development files for libv4lconvert
+Group:		Development/C
+
+%description -n	%{v4lconvertd}
+Development files for libv4lconvert
+
+%files -n %{v4lconvertd}
+%{_includedir}/libv4lconvert.h
+%{_libdir}/libv4lconvert.so
+%{_libdir}/pkgconfig/libv4lconvert.pc
+
 %package -n	%{develname}
 Summary:	Development files from libv4l
 Group:		Development/C
-Requires:	%{libname} = %{version}-%{release}
+Requires:	%{dvbv5d} = %{EVRD}
+Requires:	%{v4l1d} = %{EVRD}
+Requires:	%{v4l2d} = %{EVRD}
+Requires:	%{v4l2rdsd} = %{EVRD}
+Requires:	%{v4lconvertd} = %{EVRD}
 Provides:	%{name}-devel = %{version}-%{release}
 Provides:	libv4l-devel = %{version}-%{release}
 
@@ -87,6 +177,12 @@ CXXFLAGS="%{optflags} -std=gnu++14" %configure \
 	--enable-libdvbv5 \
 	--with-libudev \
 	--disable-static
+
+# ir-ctl makes heavy use of nested functions.
+# build it with gcc for now...
+cd utils/ir-ctl
+%make CC=gcc
+cd -
 
 %make
 
@@ -105,6 +201,11 @@ cat *.lang >%{name}-all.lang
 %config(noreplace) /lib/udev/rules.d/70-infrared.rules
 %dir /lib/udev/rc_keymaps
 /lib/udev/rc_keymaps/*
+%{_bindir}/cec-compliance
+%{_bindir}/cec-ctl
+%{_bindir}/cec-follower
+%{_bindir}/dvbv5-daemon
+%{_bindir}/ir-ctl
 %{_bindir}/cx18-ctl
 %{_bindir}/decode_tm6000
 %{_bindir}/ir-keytable
@@ -125,6 +226,10 @@ cat *.lang >%{name}-all.lang
 %{_mandir}/man1/dvbv5-zap.1*
 %{_mandir}/man1/v4l2-compliance.1.*
 %{_mandir}/man1/v4l2-ctl.1.*
+%{_mandir}/man1/cec-compliance.1*
+%{_mandir}/man1/cec-ctl.1*
+%{_mandir}/man1/cec-follower.1*
+%{_mandir}/man1/ir-ctl.1*
 
 %files -n v4l-utils-qt4
 %{_bindir}/qv4l2
@@ -135,19 +240,13 @@ cat *.lang >%{name}-all.lang
 %files -n %{wrappersname}
 %dir %{_libdir}/libv4l
 %dir %{_libdir}/libv4l/plugins
+%{_libdir}/v4l1compat.so
+%{_libdir}/v4l2convert.so
 %{_libdir}/libv4l/v4l1compat.so
 %{_libdir}/libv4l/v4l2convert.so
 %{_libdir}/libv4l/*-decomp
 %{_libdir}/libv4l/plugins/libv4l-mplane.so
 
 %files -n %{libname}
-%{_libdir}/libv4l1.so.%{major}*
-%{_libdir}/libv4l2*.so.%{major}*
-%{_libdir}/libdvbv5.so.%{major}*
-%{_libdir}/libv4lconvert.so.%{major}*
 
 %files -n %{develname}
-%{_includedir}/*.h
-%{_includedir}/libdvbv5
-%{_libdir}/*.so
-%{_libdir}/pkgconfig/*.pc
