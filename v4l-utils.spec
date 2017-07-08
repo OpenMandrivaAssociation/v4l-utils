@@ -8,7 +8,7 @@
 
 Name:		v4l-utils
 Version:	1.12.5
-Release:	1
+Release:	2
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
@@ -106,6 +106,7 @@ Development files for libdvbv5
 %package -n	%{v4l1d}
 Summary:	Development files for libv4l1
 Group:		Development/C
+Requires:	%{v4l1} = %{EVRD}
 
 %description -n	%{v4l1d}
 Development files for libv4l1
@@ -119,6 +120,7 @@ Development files for libv4l1
 %package -n	%{v4l2d}
 Summary:	Development files for libv4l2
 Group:		Development/C
+Requires:	%{v4l2} = %{EVRD}
 
 %description -n	%{v4l2d}
 Development files for libv4l2
@@ -132,6 +134,7 @@ Development files for libv4l2
 %package -n	%{v4l2rdsd}
 Summary:	Development files for libv4l2rds
 Group:		Development/C
+Requires:	%{v4l2rds} = %{EVRD}
 
 %description -n	%{v4l2rdsd}
 Development files for libv4l2rds
@@ -144,6 +147,7 @@ Development files for libv4l2rds
 %package -n	%{v4lconvertd}
 Summary:	Development files for libv4lconvert
 Group:		Development/C
+Requires:	%{v4lconvert} = %{EVRD}
 
 %description -n	%{v4lconvertd}
 Development files for libv4lconvert
