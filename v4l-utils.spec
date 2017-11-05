@@ -8,7 +8,7 @@
 
 Name:		v4l-utils
 Version:	1.12.5
-Release:	2
+Release:	3
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
@@ -31,6 +31,9 @@ BuildRequires:	pkgconfig(libudev)
 Conflicts:	ivtv-utils < 1.4.0-2
 Obsoletes:	libv4l < 0.6.4-2
 Requires:	%{wrappersname} >= %{version}-%{release}
+
+%define oldname %mklibname v4l 0
+Obsoletes:	%{oldname} < %{EVRD}
 
 %description
 v4l-utils is the combination of various v4l and dvb utilities which
