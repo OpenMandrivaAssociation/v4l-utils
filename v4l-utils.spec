@@ -7,8 +7,8 @@
 %define _disable_lto 1
 
 Name:		v4l-utils
-Version:	1.12.5
-Release:	3
+Version:	1.12.6
+Release:	1
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
