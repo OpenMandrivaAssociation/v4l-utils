@@ -7,8 +7,8 @@
 %define _disable_lto 1
 
 Name:		v4l-utils
-Version:	1.14.1
-Release:	2
+Version:	1.16.3
+Release:	1
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
@@ -57,13 +57,15 @@ used to be part of the v4l-dvb mercurial kernel tree.
 %libpackage v4l2rds %{major}
 %libpackage v4lconvert %{major}
 
-%package -n	v4l-utils-qt4
-Summary:	Qt4 tools for v4l applications
+%package -n	v4l-utils-qt5
+Summary:	Qt5 tools for v4l applications
 Group:		System/Libraries
 Conflicts:	libv4l <= 0.7.91-1mdv2010.1
+Obsoletes:      v4l-utils-qt4 < 1.16.3-1
+Provides:       v4l-utils-qt4 = %{EVRD}
 
-%description -n	v4l-utils-qt4
-v4l-utils-qt4 is a QT4 gui for the v4l-utils tools.
+%description -n	v4l-utils-qt5
+v4l-utils-qt5 is a QT5 gui for the v4l-utils tools.
 
 %package -n	%{wrappersname}
 Summary:	Wrappers for v4l applications
@@ -176,8 +178,7 @@ This package contains the development files needed to build
 programs that use libv4l.
 
 %prep
-%setup -q
-%apply_patches
+%autosetup -p1
 
 %build
 CXXFLAGS="%{optflags} -std=gnu++14" %configure \
@@ -191,10 +192,10 @@ cd utils/ir-ctl
 %make CC=gcc
 cd -
 
-%make
+%make_build
 
 %install
-%makeinstall_std PREFIX="%{_prefix}" LIBDIR="%{_libdir}"
+%make_install PREFIX="%{_prefix}" LIBDIR="%{_libdir}"
 
 # already provided by ivtv-utils package, more uptodate/complete there
 rm -f %{buildroot}%{_bindir}/ivtv-ctl
@@ -238,7 +239,7 @@ cat *.lang >%{name}-all.lang
 %{_mandir}/man1/cec-follower.1*
 %{_mandir}/man1/ir-ctl.1*
 
-%files -n v4l-utils-qt4
+%files -n v4l-utils-qt5
 %{_bindir}/qv4l2
 %{_datadir}/applications/qv4l2.desktop
 %{_iconsdir}/hicolor/*/apps/qv4l2.*
