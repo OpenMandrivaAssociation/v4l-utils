@@ -19,6 +19,7 @@ Patch0:		v4l-utils-1.12.3-pthread.patch
 Patch1:		v4l-utils-1.8.0-use-system-jpeg.patch
 BuildRequires:	jpeg-devel
 BuildRequires:	sysfsutils-devel
+BuildRequires:	pkgconfig(libelf)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glu)
@@ -189,7 +190,11 @@ CXXFLAGS="%{optflags} -std=gnu++14" %configure \
 # ir-ctl makes heavy use of nested functions.
 # build it with gcc for now...
 cd utils/ir-ctl
-%make CC=gcc
+%make_build CC=gcc
+cd -
+# (tpg) another one with VLAIS
+cd utils/keytable
+%make_build CC=gcc
 cd -
 
 %make_build
