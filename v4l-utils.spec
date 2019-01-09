@@ -249,6 +249,10 @@ cat *.lang >%{name}-all.lang
 %{_datadir}/applications/qv4l2.desktop
 %{_iconsdir}/hicolor/*/apps/qv4l2.*
 %{_mandir}/man1/qv4l2.1*
+%{_bindir}/qvidcap
+%{_datadir}/applications/qvidcap.desktop
+%{_iconsdir}/hicolor/*/apps/qvidcap.*g
+%{_mandir}/man1/qvidcap.1.*
 
 %files -n %{wrappersname}
 %dir %{_libdir}/libv4l
