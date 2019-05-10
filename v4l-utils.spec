@@ -5,6 +5,7 @@
 %define _disable_rebuild_configure 1
 %define _disable_ld_no_undefined 1
 %define _disable_lto 1
+%bcond_without	graphics
 
 Name:		v4l-utils
 Version:	1.16.3
@@ -21,12 +22,14 @@ BuildRequires:	jpeg-devel
 BuildRequires:	sysfsutils-devel
 BuildRequires:	pkgconfig(libelf)
 BuildRequires:	pkgconfig(x11)
+%if %{with graphics}
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Gui)
 BuildRequires:	pkgconfig(Qt5Widgets)
 BuildRequires:	pkgconfig(Qt5OpenGL)
+%endif
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(libudev)
 Conflicts:	ivtv-utils < 1.4.0-2
@@ -245,6 +248,7 @@ cat *.lang >%{name}-all.lang
 %{_mandir}/man1/ir-ctl.1*
 
 %files -n v4l-utils-qt5
+%if %{with graphics}
 %{_bindir}/qv4l2
 %{_datadir}/applications/qv4l2.desktop
 %{_iconsdir}/hicolor/*/apps/qv4l2.*
@@ -253,6 +257,7 @@ cat *.lang >%{name}-all.lang
 %{_datadir}/applications/qvidcap.desktop
 %{_iconsdir}/hicolor/*/apps/qvidcap.*g
 %{_mandir}/man1/qvidcap.1.*
+%endif
 
 %files -n %{wrappersname}
 %dir %{_libdir}/libv4l
