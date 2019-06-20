@@ -8,7 +8,7 @@
 %bcond_without	graphics
 
 Name:		v4l-utils
-Version:	1.16.3
+Version:	1.16.6
 Release:	1
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
