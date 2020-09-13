@@ -1,0 +1,60 @@
+diff -up v4l-utils-1.20.0/utils/qvidcap/paint.cpp.omv~ v4l-utils-1.20.0/utils/qvidcap/paint.cpp
+--- v4l-utils-1.20.0/utils/qvidcap/paint.cpp.omv~	2020-09-13 18:21:12.993667857 +0200
++++ v4l-utils-1.20.0/utils/qvidcap/paint.cpp	2020-09-13 18:31:04.021442468 +0200
+@@ -24,6 +24,10 @@
+ 
+ #include "v4l2-info.h"
+ 
++#ifdef HAVE_QTGLES
++#include <GL/gl.h>
++#endif
++
+ void CaptureWin::initializeGL()
+ {
+ 	initializeOpenGLFunctions();
+diff -up v4l-utils-1.20.0/configure.ac.omv~ v4l-utils-1.20.0/configure.ac
+--- v4l-utils-1.20.0/configure.ac.omv~	2020-09-13 18:32:46.372727599 +0200
++++ v4l-utils-1.20.0/configure.ac	2020-09-13 18:32:30.869531424 +0200
+@@ -272,12 +272,16 @@ if test "x$qt_pkgconfig" = "xtrue"; then
+         QT_VERSION="v5 with QtGL"
+       fi
+    else
++      QTGL_CFLAGS="$QT5GL_CFLAGS -fPIC"
++      QTGL_LIBS="$QT5GL_LIBS"
++      AC_SUBST(QTGL_CFLAGS)
++      AC_SUBST(QTGL_LIBS)
++      AC_DEFINE([HAVE_QTGLES], [1], [qt has opengl ES support])
+       if test "x$qt54_pkgconfig" = "xtrue"; then
+-        QT_VERSION="v5.4"
++        QT_VERSION="v5.4 with QtGLES"
+       else
+-        QT_VERSION="v5"
++        QT_VERSION="v5 with QtGLES"
+       fi
+-      AC_MSG_WARN(Qt5 Desktop OpenGL is not available)
+    fi
+ else
+    AC_MSG_WARN(Qt5 or higher is not available)
+@@ -538,7 +542,7 @@ AM_CONDITIONAL([WITH_DVBV5_REMOTE], [tes
+ AM_CONDITIONAL([WITH_DYN_LIBV4L],   [test x$enable_dyn_libv4l != xno])
+ AM_CONDITIONAL([WITH_V4LUTILS],	    [test x$enable_v4l_utils != xno -a x$linux_os = xyes])
+ AM_CONDITIONAL([WITH_QV4L2],	    [test x${qt_pkgconfig} = xtrue -a x$enable_qv4l2 != xno])
+-AM_CONDITIONAL([WITH_QVIDCAP],	    [test x${qt_desktop_opengl} = xyes -a x$enable_qvidcap != xno])
++AM_CONDITIONAL([WITH_QVIDCAP],	    [test x${qt_pkgconfig} = xtrue -a x$enable_qvidcap != xno])
+ AM_CONDITIONAL([WITH_V4L_PLUGINS],  [test x$enable_dyn_libv4l != xno -a x$enable_shared != xno])
+ AM_CONDITIONAL([WITH_V4L_WRAPPERS], [test x$enable_dyn_libv4l != xno -a x$enable_shared != xno])
+ AM_CONDITIONAL([WITH_QTGL],	    [test x${qt_desktop_opengl} = xyes])
+diff -up v4l-utils-1.20.0/configure.ac.omv~ v4l-utils-1.20.0/configure.ac
+diff -up v4l-utils-1.20.0/utils/Makefile.am.omv~ v4l-utils-1.20.0/utils/Makefile.am
+diff -up v4l-utils-1.20.0/utils/qvidcap/Makefile.am.omv~ v4l-utils-1.20.0/utils/qvidcap/Makefile.am
+--- v4l-utils-1.20.0/utils/qvidcap/Makefile.am.omv~	2020-09-13 18:38:24.869113238 +0200
++++ v4l-utils-1.20.0/utils/qvidcap/Makefile.am	2020-09-13 18:38:42.822350138 +0200
+@@ -6,7 +6,7 @@ qvidcap_SOURCES = qvidcap.cpp qvidcap.h
+ nodist_qvidcap_SOURCES = qrc_qvidcap.cpp moc_capture.cpp v4l2-convert.h
+ qvidcap_LDADD = ../../lib/libv4l2/libv4l2.la ../../lib/libv4lconvert/libv4lconvert.la ../libv4l2util/libv4l2util.la \
+   ../libmedia_dev/libmedia_dev.la
+-qvidcap_CPPFLAGS = -I\$(top_srcdir)/utils/common
++qvidcap_CPPFLAGS = -I$(top_srcdir)/utils/common
+ 
+ qvidcap_CPPFLAGS += $(QTGL_CFLAGS)
+ qvidcap_LDFLAGS = $(QTGL_LIBS)

@@ -17,7 +17,7 @@
 
 Name:		v4l-utils
 Version:	1.20.0
-Release:	1
+Release:	2
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
@@ -26,6 +26,7 @@ Source0:	http://linuxtv.org/downloads/v4l-utils/%{name}-%{version}.tar.bz2
 Source100:	%{name}.rpmlintrc
 Patch0:		v4l-utils-1.12.3-pthread.patch
 Patch1:		v4l-utils-1.8.0-use-system-jpeg.patch
+Patch2:		v4l-utils-1.20.0-qt-gles.patch
 BuildRequires:	pkgconfig(libjpeg)
 BuildRequires:	sysfsutils-devel
 BuildRequires:	pkgconfig(libelf)
@@ -315,6 +316,8 @@ pixelformats to v4l2 applications.
 
 %prep
 %autosetup -p1
+autoheader
+autoconf
 export CONFIGURE_TOP="$(pwd)"
 %if %{with compat32}
 mkdir build32
