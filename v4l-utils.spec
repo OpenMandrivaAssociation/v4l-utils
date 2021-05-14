@@ -17,7 +17,7 @@
 
 Name:		v4l-utils
 Version:	1.20.0
-Release:	2
+Release:	3
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
@@ -100,17 +100,17 @@ used to be part of the v4l-dvb mercurial kernel tree.
 %lib32package v4lconvert %{major}
 %endif
 
-%package -n	v4l-utils-qt5
+%package -n v4l-utils-qt5
 Summary:	Qt5 tools for v4l applications
 Group:		System/Libraries
 Conflicts:	libv4l <= 0.7.91-1mdv2010.1
 Obsoletes:      v4l-utils-qt4 < 1.16.3-1
 Provides:       v4l-utils-qt4 = %{EVRD}
 
-%description -n	v4l-utils-qt5
+%description -n v4l-utils-qt5
 v4l-utils-qt5 is a QT5 gui for the v4l-utils tools.
 
-%package -n	%{wrappersname}
+%package -n %{wrappersname}
 Summary:	Wrappers for v4l applications
 Group:		System/Libraries
 Conflicts:	libv4l <= 0.5.9-1mdv2010.0
@@ -121,7 +121,7 @@ This package contains wrapper libraries that adds v4l2 device
 compatibility for v4l1 applications and support for various
 pixelformats to v4l2 applications.
 
-%package -n	%{libname}
+%package -n %{libname}
 Summary:	Thin abstraction layer for video4linux2 devices
 Group:		System/Libraries
 Requires:	%{name} >= %{version}
@@ -138,12 +138,12 @@ layer is to make it easy for application writers to support a wide
 variety of devices without having to write separate code for
 different devices in the same class.
 
-%package -n	%{dvbv5d}
+%package -n %{dvbv5d}
 Summary:	Development files for libdvbv5
 Group:		Development/C
 Requires:	%{dvbv5} = %{EVRD}
 
-%description -n	%{dvbv5d}
+%description -n %{dvbv5d}
 Development files for libdvbv5
 
 %files -n %{dvbv5d}
@@ -151,12 +151,12 @@ Development files for libdvbv5
 %{_libdir}/libdvbv5.so
 %{_libdir}/pkgconfig/libdvbv5.pc
 
-%package -n	%{v4l1d}
+%package -n %{v4l1d}
 Summary:	Development files for libv4l1
 Group:		Development/C
 Requires:	%{v4l1} = %{EVRD}
 
-%description -n	%{v4l1d}
+%description -n %{v4l1d}
 Development files for libv4l1
 
 %files -n %{v4l1d}
@@ -165,12 +165,12 @@ Development files for libv4l1
 %{_libdir}/libv4l1.so
 %{_libdir}/pkgconfig/libv4l1.pc
 
-%package -n	%{v4l2d}
+%package -n %{v4l2d}
 Summary:	Development files for libv4l2
 Group:		Development/C
 Requires:	%{v4l2} = %{EVRD}
 
-%description -n	%{v4l2d}
+%description -n %{v4l2d}
 Development files for libv4l2
 
 %files -n %{v4l2d}
@@ -179,12 +179,12 @@ Development files for libv4l2
 %{_libdir}/libv4l2.so
 %{_libdir}/pkgconfig/libv4l2.pc
 
-%package -n	%{v4l2rdsd}
+%package -n %{v4l2rdsd}
 Summary:	Development files for libv4l2rds
 Group:		Development/C
 Requires:	%{v4l2rds} = %{EVRD}
 
-%description -n	%{v4l2rdsd}
+%description -n %{v4l2rdsd}
 Development files for libv4l2rds
 
 %files -n %{v4l2rdsd}
@@ -192,12 +192,12 @@ Development files for libv4l2rds
 %{_libdir}/libv4l2rds.so
 %{_libdir}/pkgconfig/libv4l2rds.pc
 
-%package -n	%{v4lconvertd}
+%package -n %{v4lconvertd}
 Summary:	Development files for libv4lconvert
 Group:		Development/C
 Requires:	%{v4lconvert} = %{EVRD}
 
-%description -n	%{v4lconvertd}
+%description -n %{v4lconvertd}
 Development files for libv4lconvert
 
 %files -n %{v4lconvertd}
@@ -205,7 +205,7 @@ Development files for libv4lconvert
 %{_libdir}/libv4lconvert.so
 %{_libdir}/pkgconfig/libv4lconvert.pc
 
-%package -n	%{develname}
+%package -n %{develname}
 Summary:	Development files from libv4l
 Group:		Development/C
 Requires:	%{dvbv5d} = %{EVRD}
@@ -221,67 +221,67 @@ This package contains the development files needed to build
 programs that use libv4l.
 
 %if %{with compat32}
-%package -n	%{dvbv5d32}
+%package -n %{dvbv5d32}
 Summary:	Development files for libdvbv5 (32-bit)
 Group:		Development/C
 Requires:	%{dvbv532} = %{EVRD}
 
-%description -n	%{dvbv5d32}
+%description -n %{dvbv5d32}
 Development files for libdvbv5
 
 %files -n %{dvbv5d32}
 %{_prefix}/lib/libdvbv5.so
 %{_prefix}/lib/pkgconfig/libdvbv5.pc
 
-%package -n	%{v4l1d32}
+%package -n %{v4l1d32}
 Summary:	Development files for libv4l1 (32-bit)
 Group:		Development/C
 Requires:	%{v4l132} = %{EVRD}
 
-%description -n	%{v4l1d32}
+%description -n %{v4l1d32}
 Development files for libv4l1
 
 %files -n %{v4l1d32}
 %{_prefix}/lib/libv4l1.so
 %{_prefix}/lib/pkgconfig/libv4l1.pc
 
-%package -n	%{v4l2d32}
+%package -n %{v4l2d32}
 Summary:	Development files for libv4l2 (32-bit)
 Group:		Development/C
 Requires:	%{v4l232} = %{EVRD}
 
-%description -n	%{v4l2d32}
+%description -n %{v4l2d32}
 Development files for libv4l2
 
 %files -n %{v4l2d32}
 %{_prefix}/lib/libv4l2.so
 %{_prefix}/lib/pkgconfig/libv4l2.pc
 
-%package -n	%{v4l2rdsd32}
+%package -n %{v4l2rdsd32}
 Summary:	Development files for libv4l2rds (32-bit)
 Group:		Development/C
 Requires:	%{v4l2rds32} = %{EVRD}
 
-%description -n	%{v4l2rdsd32}
+%description -n %{v4l2rdsd32}
 Development files for libv4l2rds
 
 %files -n %{v4l2rdsd32}
 %{_prefix}/lib/libv4l2rds.so
 %{_prefix}/lib/pkgconfig/libv4l2rds.pc
 
-%package -n	%{v4lconvertd32}
+%package -n %{v4lconvertd32}
 Summary:	Development files for libv4lconvert (32-bit)
 Group:		Development/C
 Requires:	%{v4lconvert32} = %{EVRD}
 
-%description -n	%{v4lconvertd32}
+%description -n %{v4lconvertd32}
 Development files for libv4lconvert
 
 %files -n %{v4lconvertd32}
 %{_prefix}/lib/libv4lconvert.so
 %{_prefix}/lib/pkgconfig/libv4lconvert.pc
 
-%package -n	%{devel32name}
+%package -n %{devel32name}
 Summary:	Development files from libv4l (32-bit)
 Group:		Development/C
 Requires:	%{dvbv5d32} = %{EVRD}
@@ -294,7 +294,7 @@ Requires:	%{v4lconvertd32} = %{EVRD}
 This package contains the development files needed to build
 programs that use libv4l.
 
-%package -n	%{wrappers32name}
+%package -n %{wrappers32name}
 Summary:	Wrappers for v4l applications
 Group:		System/Libraries
 
@@ -341,9 +341,10 @@ CXXFLAGS="%{optflags} -std=gnu++14" %configure \
 
 # ir-ctl makes heavy use of nested functions.
 # build it with gcc for now...
-%make_build -C build/utils/ir-ctl CC=gcc
+%make_build -C build/utils/ir-ctl
+
 # (tpg) another one with VLAIS
-%make_build -C build/utils/keytable CC=gcc
+%make_build -C build/utils/keytable
 
 %make_build -C build
 
@@ -362,10 +363,10 @@ cat *.lang >%{name}-all.lang
 
 %files -f %{name}-all.lang
 %config(noreplace) %{_sysconfdir}/rc_maps.cfg
-%config(noreplace) /lib/udev/rules.d/70-infrared.rules
+%config(noreplace) %{_udevrulesdir}/70-infrared.rules
 %dir /lib/udev/rc_keymaps
-/lib/udev/rc_keymaps/*
-/lib/systemd/system/systemd-udevd.service.d/50-rc_keymap.conf
+%{_udevrulesdir}/../rc_keymaps/*
+%{_unitdir}/systemd-udevd.service.d/50-rc_keymap.conf
 %{_bindir}/cec-compliance
 %{_bindir}/cec-ctl
 %{_bindir}/cec-follower
