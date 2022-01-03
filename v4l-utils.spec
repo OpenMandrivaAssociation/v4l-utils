@@ -16,8 +16,8 @@
 %bcond_without	graphics
 
 Name:		v4l-utils
-Version:	1.20.0
-Release:	3
+Version:	1.22.1
+Release:	1
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
