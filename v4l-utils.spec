@@ -366,7 +366,6 @@ cat *.lang >%{name}-all.lang
 %config(noreplace) %{_udevrulesdir}/70-infrared.rules
 %dir /lib/udev/rc_keymaps
 %{_udevrulesdir}/../rc_keymaps/*
-%{_unitdir}/systemd-udevd.service.d/50-rc_keymap.conf
 %{_bindir}/cec-compliance
 %{_bindir}/cec-ctl
 %{_bindir}/cec-follower
