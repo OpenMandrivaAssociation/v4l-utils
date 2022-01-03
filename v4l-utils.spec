@@ -16,8 +16,8 @@
 %bcond_without	graphics
 
 Name:		v4l-utils
-Version:	1.20.0
-Release:	3
+Version:	1.22.1
+Release:	1
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
@@ -30,6 +30,7 @@ Patch2:		v4l-utils-1.20.0-qt-gles.patch
 BuildRequires:	pkgconfig(libjpeg)
 BuildRequires:	sysfsutils-devel
 BuildRequires:	pkgconfig(libelf)
+BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(x11)
 %if %{with graphics}
 BuildRequires:	pkgconfig(gl)
@@ -366,7 +367,6 @@ cat *.lang >%{name}-all.lang
 %config(noreplace) %{_udevrulesdir}/70-infrared.rules
 %dir /lib/udev/rc_keymaps
 %{_udevrulesdir}/../rc_keymaps/*
-%{_unitdir}/systemd-udevd.service.d/50-rc_keymap.conf
 %{_bindir}/cec-compliance
 %{_bindir}/cec-ctl
 %{_bindir}/cec-follower
