@@ -30,6 +30,7 @@ Patch2:		v4l-utils-1.20.0-qt-gles.patch
 BuildRequires:	pkgconfig(libjpeg)
 BuildRequires:	sysfsutils-devel
 BuildRequires:	pkgconfig(libelf)
+BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(x11)
 %if %{with graphics}
 BuildRequires:	pkgconfig(gl)
