@@ -13,7 +13,7 @@
 %define _disable_rebuild_configure 1
 %define _disable_ld_no_undefined 1
 %define _disable_lto 1
-%bcond_without	graphics
+%bcond_without graphics
 
 Name:		v4l-utils
 Version:	1.22.1
@@ -57,6 +57,7 @@ BuildRequires:	devel(libGL)
 BuildRequires:	devel(libGLU)
 BuildRequires:	devel(libasound)
 BuildRequires:	devel(libudev)
+BuildRequires:	libc6
 %endif
 
 %description
@@ -105,8 +106,8 @@ used to be part of the v4l-dvb mercurial kernel tree.
 Summary:	Qt5 tools for v4l applications
 Group:		System/Libraries
 Conflicts:	libv4l <= 0.7.91-1mdv2010.1
-Obsoletes:      v4l-utils-qt4 < 1.16.3-1
-Provides:       v4l-utils-qt4 = %{EVRD}
+Obsoletes:	v4l-utils-qt4 < 1.16.3-1
+Provides:	v4l-utils-qt4 = %{EVRD}
 
 %description -n v4l-utils-qt5
 v4l-utils-qt5 is a QT5 gui for the v4l-utils tools.
@@ -145,7 +146,7 @@ Group:		Development/C
 Requires:	%{dvbv5} = %{EVRD}
 
 %description -n %{dvbv5d}
-Development files for libdvbv5
+Development files for libdvbv5.
 
 %files -n %{dvbv5d}
 %{_includedir}/libdvbv5
@@ -158,7 +159,7 @@ Group:		Development/C
 Requires:	%{v4l1} = %{EVRD}
 
 %description -n %{v4l1d}
-Development files for libv4l1
+Development files for libv4l1.
 
 %files -n %{v4l1d}
 %{_includedir}/libv4l1.h
@@ -172,7 +173,7 @@ Group:		Development/C
 Requires:	%{v4l2} = %{EVRD}
 
 %description -n %{v4l2d}
-Development files for libv4l2
+Development files for libv4l2.
 
 %files -n %{v4l2d}
 %{_includedir}/libv4l2.h
@@ -186,7 +187,7 @@ Group:		Development/C
 Requires:	%{v4l2rds} = %{EVRD}
 
 %description -n %{v4l2rdsd}
-Development files for libv4l2rds
+Development files for libv4l2rds.
 
 %files -n %{v4l2rdsd}
 %{_includedir}/libv4l2rds.h
@@ -199,7 +200,7 @@ Group:		Development/C
 Requires:	%{v4lconvert} = %{EVRD}
 
 %description -n %{v4lconvertd}
-Development files for libv4lconvert
+Development files for libv4lconvert.
 
 %files -n %{v4lconvertd}
 %{_includedir}/libv4lconvert.h
@@ -228,7 +229,7 @@ Group:		Development/C
 Requires:	%{dvbv532} = %{EVRD}
 
 %description -n %{dvbv5d32}
-Development files for libdvbv5
+Development files for libdvbv5.
 
 %files -n %{dvbv5d32}
 %{_prefix}/lib/libdvbv5.so
@@ -240,7 +241,7 @@ Group:		Development/C
 Requires:	%{v4l132} = %{EVRD}
 
 %description -n %{v4l1d32}
-Development files for libv4l1
+Development files for libv4l1.
 
 %files -n %{v4l1d32}
 %{_prefix}/lib/libv4l1.so
@@ -252,7 +253,7 @@ Group:		Development/C
 Requires:	%{v4l232} = %{EVRD}
 
 %description -n %{v4l2d32}
-Development files for libv4l2
+Development files for libv4l2.
 
 %files -n %{v4l2d32}
 %{_prefix}/lib/libv4l2.so
@@ -264,7 +265,7 @@ Group:		Development/C
 Requires:	%{v4l2rds32} = %{EVRD}
 
 %description -n %{v4l2rdsd32}
-Development files for libv4l2rds
+Development files for libv4l2rds.
 
 %files -n %{v4l2rdsd32}
 %{_prefix}/lib/libv4l2rds.so
@@ -276,7 +277,7 @@ Group:		Development/C
 Requires:	%{v4lconvert32} = %{EVRD}
 
 %description -n %{v4lconvertd32}
-Development files for libv4lconvert
+Development files for libv4lconvert.
 
 %files -n %{v4lconvertd32}
 %{_prefix}/lib/libv4lconvert.so
@@ -317,6 +318,7 @@ pixelformats to v4l2 applications.
 
 %prep
 %autosetup -p1
+
 autoheader
 autoconf
 export CONFIGURE_TOP="$(pwd)"
@@ -365,7 +367,7 @@ cat *.lang >%{name}-all.lang
 %files -f %{name}-all.lang
 %config(noreplace) %{_sysconfdir}/rc_maps.cfg
 %config(noreplace) %{_udevrulesdir}/70-infrared.rules
-%dir /lib/udev/rc_keymaps
+%dir %(dirname %{_udevrulesdir})/rc_keymaps
 %{_udevrulesdir}/../rc_keymaps/*
 %{_bindir}/cec-compliance
 %{_bindir}/cec-ctl
@@ -383,31 +385,31 @@ cat *.lang >%{name}-all.lang
 %{_bindir}/dvbv5-scan
 %{_bindir}/dvbv5-zap
 %{_bindir}/v4l2-sysfs-path
-%{_sbindir}/v4l2-dbg
-%{_mandir}/man1/ir-keytable.1.*
 %{_bindir}/media-ctl
-%{_mandir}/man1/dvb-fe-tool.1*
-%{_mandir}/man1/dvb-format-convert.1*
-%{_mandir}/man1/dvbv5-scan.1*
-%{_mandir}/man1/dvbv5-zap.1*
-%{_mandir}/man1/v4l2-compliance.1.*
-%{_mandir}/man1/v4l2-ctl.1.*
-%{_mandir}/man1/cec-compliance.1*
-%{_mandir}/man1/cec-ctl.1*
-%{_mandir}/man1/cec-follower.1*
-%{_mandir}/man1/ir-ctl.1*
-%{_mandir}/man5/rc_keymap.5*
+%{_sbindir}/v4l2-dbg
+%doc %{_mandir}/man1/ir-keytable.1.*
+%doc %{_mandir}/man1/dvb-fe-tool.1*
+%doc %{_mandir}/man1/dvb-format-convert.1*
+%doc %{_mandir}/man1/dvbv5-scan.1*
+%doc %{_mandir}/man1/dvbv5-zap.1*
+%doc %{_mandir}/man1/v4l2-compliance.1.*
+%doc %{_mandir}/man1/v4l2-ctl.1.*
+%doc %{_mandir}/man1/cec-compliance.1*
+%doc %{_mandir}/man1/cec-ctl.1*
+%doc %{_mandir}/man1/cec-follower.1*
+%doc %{_mandir}/man1/ir-ctl.1*
+%doc %{_mandir}/man5/rc_keymap.5*
 
 %files -n v4l-utils-qt5
 %if %{with graphics}
 %{_bindir}/qv4l2
 %{_datadir}/applications/qv4l2.desktop
 %{_iconsdir}/hicolor/*/apps/qv4l2.*
-%{_mandir}/man1/qv4l2.1*
+%doc %{_mandir}/man1/qv4l2.1*
 %{_bindir}/qvidcap
 %{_datadir}/applications/qvidcap.desktop
 %{_iconsdir}/hicolor/*/apps/qvidcap.*g
-%{_mandir}/man1/qvidcap.1.*
+%doc %{_mandir}/man1/qvidcap.1.*
 %endif
 
 %files -n %{wrappersname}
