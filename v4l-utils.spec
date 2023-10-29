@@ -4,10 +4,10 @@
 %endif
 
 %define major 0
-%define libname %mklibname v4l %{major}
+%define oldlibname %mklibname v4l 0
+%define libname %mklibname v4l
 %define develname %mklibname v4l -d
 %define wrappersname %mklibname v4l-wrappers
-%define lib32name %mklib32name v4l %{major}
 %define devel32name %mklib32name v4l -d
 %define wrappers32name %mklib32name v4l-wrappers
 %define _disable_rebuild_configure 1
@@ -16,8 +16,8 @@
 %bcond_without graphics
 
 Name:		v4l-utils
-Version:	1.22.1
-Release:	3
+Version:	1.24.1
+Release:	1
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
@@ -64,11 +64,16 @@ BuildRequires:	libc6
 v4l-utils is the combination of various v4l and dvb utilities which
 used to be part of the v4l-dvb mercurial kernel tree. 
 
-%define dvbv5 %mklibname dvbv5 %{major}
-%define v4l1 %mklibname v4l1 %{major}
-%define v4l2 %mklibname v4l2 %{major}
-%define v4l2rds %mklibname v4l2rds %{major}
-%define v4lconvert %mklibname v4lconvert %{major}
+%define olddvbv5 %mklibname dvbv5 0
+%define dvbv5 %mklibname dvbv5
+%define oldv4l1 %mklibname v4l1 0
+%define v4l1 %mklibname v4l1
+%define oldv4l2 %mklibname v4l2 0
+%define v4l2 %mklibname v4l2
+%define oldv4l2rds %mklibname v4l2rds 0
+%define v4l2rds %mklibname v4l2rds
+%define oldv4lconvert %mklibname v4lconvert 0
+%define v4lconvert %mklibname v4lconvert
 
 %define dvbv5d %mklibname dvbv5 -d
 %define v4l1d %mklibname v4l1 -d
@@ -76,11 +81,16 @@ used to be part of the v4l-dvb mercurial kernel tree.
 %define v4l2rdsd %mklibname v4l2rds -d
 %define v4lconvertd %mklibname v4lconvert -d
 
-%define dvbv532 %mklib32name dvbv5 %{major}
-%define v4l132 %mklib32name v4l1 %{major}
-%define v4l232 %mklib32name v4l2 %{major}
-%define v4l2rds32 %mklib32name v4l2rds %{major}
-%define v4lconvert32 %mklib32name v4lconvert %{major}
+%define olddvbv532 %mklib32name dvbv5 0
+%define dvbv532 %mklib32name dvbv5
+%define oldv4l132 %mklib32name v4l1 0
+%define v4l132 %mklib32name v4l1
+%define oldv4l232 %mklib32name v4l2 0
+%define v4l232 %mklib32name v4l2
+%define oldv4l2rds32 %mklib32name v4l2rds 0
+%define v4l2rds32 %mklib32name v4l2rds
+%define oldv4lconvert32 %mklib32name v4lconvert 0
+%define v4lconvert32 %mklib32name v4lconvert
 
 %define dvbv5d32 %mklib32name dvbv5 -d
 %define v4l1d32 %mklib32name v4l1 -d
@@ -89,17 +99,55 @@ used to be part of the v4l-dvb mercurial kernel tree.
 %define v4lconvertd32 %mklib32name v4lconvert -d
 
 %libpackage dvbv5 %{major}
+%{_libdir}/libdvbv5.so
+
 %libpackage v4l1 %{major}
+%{_libdir}/libv4l1.so
+
 %libpackage v4l2 %{major}
+%{_libdir}/libv4l2.so
+
 %libpackage v4l2rds %{major}
+%{_libdir}/libv4l2rds.so
+
 %libpackage v4lconvert %{major}
+%{_libdir}/libv4lconvert.so
+
+%define libv4l2tracer %mklibname v4l2tracer
+%package -n %{libv4l2tracer}
+Summary: Video4Linux tracing library
+
+%description -n %{libv4l2tracer}
+Video4Linux tracing library
+
+%files -n %{libv4l2tracer}
+%{_libdir}/libv4l2tracer.so
 
 %if %{with compat32}
 %lib32package dvbv5 %{major}
+%{_prefix}/lib/libdvbv5.so
+
 %lib32package v4l1 %{major}
+%{_prefix}/lib/libv4l1.so
+
 %lib32package v4l2 %{major}
+%{_prefix}/lib/libv4l2.so
+
 %lib32package v4l2rds %{major}
+%{_prefix}/lib/libv4l2rds.so
+
 %lib32package v4lconvert %{major}
+%{_prefix}/lib/libv4lconvert.so
+
+%define lib32v4l2tracer %mklib32name v4l2tracer
+%package -n %{lib32v4l2tracer}
+Summary: 32-Bit Video4Linux tracing library
+
+%description -n %{lib32v4l2tracer}
+32-Bit Video4Linux tracing library
+
+%files -n %{lib32v4l2tracer}
+%{_prefix}/lib/libv4l2tracer.so
 %endif
 
 %package -n v4l-utils-qt5
@@ -132,6 +180,12 @@ Requires:	%{v4l1} = %{EVRD}
 Requires:	%{v4l2} = %{EVRD}
 Requires:	%{v4l2rds} = %{EVRD}
 Requires:	%{v4lconvert} = %{EVRD}
+%rename %{oldlibname}
+Obsoletes:	%{olddvbv5} < %{EVRD}
+Obsoletes:	%{oldv4l1} < %{EVRD}
+Obsoletes:	%{oldv4l2} < %{EVRD}
+Obsoletes:	%{oldv4l2rds} < %{EVRD}
+Obsoletes:	%{oldv4lconvert} < %{EVRD}
 
 %description -n %{libname}
 libv4l is a collection of libraries which adds a thin abstraction
@@ -150,7 +204,6 @@ Development files for libdvbv5.
 
 %files -n %{dvbv5d}
 %{_includedir}/libdvbv5
-%{_libdir}/libdvbv5.so
 %{_libdir}/pkgconfig/libdvbv5.pc
 
 %package -n %{v4l1d}
@@ -164,7 +217,6 @@ Development files for libv4l1.
 %files -n %{v4l1d}
 %{_includedir}/libv4l1.h
 %{_includedir}/libv4l1-videodev.h
-%{_libdir}/libv4l1.so
 %{_libdir}/pkgconfig/libv4l1.pc
 
 %package -n %{v4l2d}
@@ -178,7 +230,6 @@ Development files for libv4l2.
 %files -n %{v4l2d}
 %{_includedir}/libv4l2.h
 %{_includedir}/libv4l-plugin.h
-%{_libdir}/libv4l2.so
 %{_libdir}/pkgconfig/libv4l2.pc
 
 %package -n %{v4l2rdsd}
@@ -191,7 +242,6 @@ Development files for libv4l2rds.
 
 %files -n %{v4l2rdsd}
 %{_includedir}/libv4l2rds.h
-%{_libdir}/libv4l2rds.so
 %{_libdir}/pkgconfig/libv4l2rds.pc
 
 %package -n %{v4lconvertd}
@@ -204,7 +254,6 @@ Development files for libv4lconvert.
 
 %files -n %{v4lconvertd}
 %{_includedir}/libv4lconvert.h
-%{_libdir}/libv4lconvert.so
 %{_libdir}/pkgconfig/libv4lconvert.pc
 
 %package -n %{develname}
@@ -232,7 +281,6 @@ Requires:	%{dvbv532} = %{EVRD}
 Development files for libdvbv5.
 
 %files -n %{dvbv5d32}
-%{_prefix}/lib/libdvbv5.so
 %{_prefix}/lib/pkgconfig/libdvbv5.pc
 
 %package -n %{v4l1d32}
@@ -244,7 +292,6 @@ Requires:	%{v4l132} = %{EVRD}
 Development files for libv4l1.
 
 %files -n %{v4l1d32}
-%{_prefix}/lib/libv4l1.so
 %{_prefix}/lib/pkgconfig/libv4l1.pc
 
 %package -n %{v4l2d32}
@@ -256,7 +303,6 @@ Requires:	%{v4l232} = %{EVRD}
 Development files for libv4l2.
 
 %files -n %{v4l2d32}
-%{_prefix}/lib/libv4l2.so
 %{_prefix}/lib/pkgconfig/libv4l2.pc
 
 %package -n %{v4l2rdsd32}
@@ -268,7 +314,6 @@ Requires:	%{v4l2rds32} = %{EVRD}
 Development files for libv4l2rds.
 
 %files -n %{v4l2rdsd32}
-%{_prefix}/lib/libv4l2rds.so
 %{_prefix}/lib/pkgconfig/libv4l2rds.pc
 
 %package -n %{v4lconvertd32}
@@ -280,7 +325,6 @@ Requires:	%{v4lconvert32} = %{EVRD}
 Development files for libv4lconvert.
 
 %files -n %{v4lconvertd32}
-%{_prefix}/lib/libv4lconvert.so
 %{_prefix}/lib/pkgconfig/libv4lconvert.pc
 
 %package -n %{devel32name}
@@ -291,6 +335,11 @@ Requires:	%{v4l1d32} = %{EVRD}
 Requires:	%{v4l2d32} = %{EVRD}
 Requires:	%{v4l2rdsd32} = %{EVRD}
 Requires:	%{v4lconvertd32} = %{EVRD}
+Obsoletes:	%{olddvbv532} < %{EVRD}
+Obsoletes:	%{oldv4l132} < %{EVRD}
+Obsoletes:	%{oldv4l232} < %{EVRD}
+Obsoletes:	%{oldv4l2rds32} < %{EVRD}
+Obsoletes:	%{oldv4lconvert32} < %{EVRD}
 
 %description -n %{devel32name}
 This package contains the development files needed to build
@@ -308,12 +357,12 @@ pixelformats to v4l2 applications.
 %files -n %{wrappers32name}
 %dir %{_prefix}/lib/libv4l
 %dir %{_prefix}/lib/libv4l/plugins
+%{_prefix}/lib/libv4l/*-decomp
+%{_prefix}/lib/libv4l/plugins/libv4l-mplane.so
 %{_prefix}/lib/v4l1compat.so
 %{_prefix}/lib/v4l2convert.so
 %{_prefix}/lib/libv4l/v4l1compat.so
 %{_prefix}/lib/libv4l/v4l2convert.so
-%{_prefix}/lib/libv4l/*-decomp
-%{_prefix}/lib/libv4l/plugins/libv4l-mplane.so
 %endif
 
 %prep
@@ -339,7 +388,7 @@ CXXFLAGS="%{optflags} -std=gnu++14" %configure \
 
 %build
 %if %{with compat32}
-%make_build -C build32
+%make_build -C build32 || make -C build32
 %endif
 
 # ir-ctl makes heavy use of nested functions.
@@ -369,6 +418,7 @@ cat *.lang >%{name}-all.lang
 %config(noreplace) %{_udevrulesdir}/70-infrared.rules
 %dir %(dirname %{_udevrulesdir})/rc_keymaps
 %{_udevrulesdir}/../rc_keymaps/*
+%{_prefix}/lib/systemd/system/systemd-udevd.service.d/50-rc_keymap.conf
 %{_bindir}/cec-compliance
 %{_bindir}/cec-ctl
 %{_bindir}/cec-follower
@@ -380,6 +430,7 @@ cat *.lang >%{name}-all.lang
 %{_bindir}/rds-ctl
 %{_bindir}/v4l2-compliance
 %{_bindir}/v4l2-ctl
+%{_bindir}/v4l2-tracer
 %{_bindir}/dvb-fe-tool
 %{_bindir}/dvb-format-convert
 %{_bindir}/dvbv5-scan
@@ -387,13 +438,14 @@ cat *.lang >%{name}-all.lang
 %{_bindir}/v4l2-sysfs-path
 %{_bindir}/media-ctl
 %{_sbindir}/v4l2-dbg
-%doc %{_mandir}/man1/ir-keytable.1.*
+%doc %{_mandir}/man1/ir-keytable.1*
 %doc %{_mandir}/man1/dvb-fe-tool.1*
 %doc %{_mandir}/man1/dvb-format-convert.1*
 %doc %{_mandir}/man1/dvbv5-scan.1*
 %doc %{_mandir}/man1/dvbv5-zap.1*
-%doc %{_mandir}/man1/v4l2-compliance.1.*
-%doc %{_mandir}/man1/v4l2-ctl.1.*
+%doc %{_mandir}/man1/v4l2-compliance.1*
+%doc %{_mandir}/man1/v4l2-ctl.1*
+%doc %{_mandir}/man1/v4l2-tracer.1*
 %doc %{_mandir}/man1/cec-compliance.1*
 %doc %{_mandir}/man1/cec-ctl.1*
 %doc %{_mandir}/man1/cec-follower.1*
@@ -409,7 +461,7 @@ cat *.lang >%{name}-all.lang
 %{_bindir}/qvidcap
 %{_datadir}/applications/qvidcap.desktop
 %{_iconsdir}/hicolor/*/apps/qvidcap.*g
-%doc %{_mandir}/man1/qvidcap.1.*
+%doc %{_mandir}/man1/qvidcap.1*
 %endif
 
 %files -n %{wrappersname}
