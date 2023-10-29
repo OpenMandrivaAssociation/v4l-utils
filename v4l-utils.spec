@@ -32,6 +32,7 @@ BuildRequires:	sysfsutils-devel
 BuildRequires:	pkgconfig(libelf)
 BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(x11)
+BuildRequires:	pkgconfig(json-c) >= 0.15
 %if %{with graphics}
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glu)
@@ -42,6 +43,8 @@ BuildRequires:	pkgconfig(Qt5OpenGL)
 %endif
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(libudev)
+BuildRequires:	pkgconfig(libbpf) >= 0.7
+BuildRequires:	doxygen
 Conflicts:	ivtv-utils < 1.4.0-2
 Obsoletes:	libv4l < 0.6.4-2
 Requires:	%{wrappersname} >= %{version}-%{release}
@@ -50,6 +53,7 @@ Requires:	%{wrappersname} >= %{version}-%{release}
 Obsoletes:	%{oldname} < %{EVRD}
 
 %if %{with compat32}
+BuildRequires:	devel(libjson-c)
 BuildRequires:	devel(libjpeg)
 BuildRequires:	devel(libelf)
 BuildRequires:	devel(libX11)
