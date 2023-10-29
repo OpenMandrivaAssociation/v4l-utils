@@ -44,6 +44,7 @@ BuildRequires:	pkgconfig(Qt5OpenGL)
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(libudev)
 BuildRequires:	pkgconfig(libbpf) >= 0.7
+BuildRequires:	pkgconfig(systemd)
 BuildRequires:	doxygen
 Conflicts:	ivtv-utils < 1.4.0-2
 Obsoletes:	libv4l < 0.6.4-2
