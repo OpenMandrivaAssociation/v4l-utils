@@ -379,7 +379,8 @@ pixelformats to v4l2 applications.
 %if %{with compat32}
 %meson32 --debug \
                   -Dqv4l2=disabled \
-                  -Dqvidcap=disabled
+                  -Dqvidcap=disabled \
+                  -Dbpf=disabled
 %endif
 
 %meson
