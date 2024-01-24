@@ -384,7 +384,8 @@ pixelformats to v4l2 applications.
                   -Dgconv=disabled
 %endif
 
-%meson
+%meson  \
+        -Dgconv=disabled
 
 %build
 %if %{with compat32}
