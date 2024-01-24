@@ -375,43 +375,23 @@ pixelformats to v4l2 applications.
 %prep
 %autosetup -p1
 
-autoheader
-autoconf
-export CONFIGURE_TOP="$(pwd)"
 %if %{with compat32}
-mkdir build32
-cd build32
-%configure32 \
-	--enable-libdvbv5 \
-	--with-libudev
-cd ..
+%meson32 --debug
 %endif
 
-mkdir build
-cd build
-CXXFLAGS="%{optflags} -std=gnu++14" %configure \
-	--enable-libdvbv5 \
-	--with-libudev
+%meson
 
 %build
 %if %{with compat32}
-%make_build -C build32 || make -C build32
+%ninja_build -C build32
 %endif
-
-# ir-ctl makes heavy use of nested functions.
-# build it with gcc for now...
-%make_build -C build/utils/ir-ctl
-
-# (tpg) another one with VLAIS
-%make_build -C build/utils/keytable
-
-%make_build -C build
+%meson_build
 
 %install
 %if %{with compat32}
-%make_install -C build32 PREFIX="%{_prefix}" LIBDIR="%{_prefix}/lib"
+%ninja_install -C build32
 %endif
-%make_install -C build PREFIX="%{_prefix}" LIBDIR="%{_libdir}"
+%meson_install
 
 # already provided by ivtv-utils package, more uptodate/complete there
 rm -f %{buildroot}%{_bindir}/ivtv-ctl
