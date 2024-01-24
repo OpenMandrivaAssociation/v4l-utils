@@ -402,7 +402,7 @@ pixelformats to v4l2 applications.
 # already provided by ivtv-utils package, more uptodate/complete there
 rm -f %{buildroot}%{_bindir}/ivtv-ctl
 
-%find_lang %{name}
+#find_lang %{name}
 %find_lang libdvbv5
 cat *.lang >%{name}-all.lang
 
