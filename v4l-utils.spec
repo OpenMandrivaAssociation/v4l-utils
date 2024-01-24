@@ -26,7 +26,7 @@ Source0:	http://linuxtv.org/downloads/v4l-utils/%{name}-%{version}.tar.xz
 Source100:	%{name}.rpmlintrc
 #Patch0:		v4l-utils-1.12.3-pthread.patch
 #Patch1:		v4l-utils-1.8.0-use-system-jpeg.patch
-Patch2:		v4l-utils-1.20.0-qt-gles.patch
+#Patch2:		v4l-utils-1.20.0-qt-gles.patch
 
 BuildRequires:	meson
 BuildRequires:	pkgconfig(libjpeg)
