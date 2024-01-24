@@ -29,6 +29,7 @@ Source100:	%{name}.rpmlintrc
 #Patch2:		v4l-utils-1.20.0-qt-gles.patch
 
 BuildRequires:	meson
+BuildRequires:  gettext
 BuildRequires:	pkgconfig(libjpeg)
 BuildRequires:	sysfsutils-devel
 BuildRequires:	pkgconfig(libelf)
@@ -402,7 +403,7 @@ pixelformats to v4l2 applications.
 # already provided by ivtv-utils package, more uptodate/complete there
 rm -f %{buildroot}%{_bindir}/ivtv-ctl
 
-#find_lang %{name}
+%find_lang %{name}
 %find_lang libdvbv5
 cat *.lang >%{name}-all.lang
 
