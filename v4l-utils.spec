@@ -461,8 +461,8 @@ cat *.lang >%{name}-all.lang
 %files -n %{wrappersname}
 %dir %{_libdir}/libv4l
 %dir %{_libdir}/libv4l/plugins
-%{_libdir}/v4l1compat.so
-%{_libdir}/v4l2convert.so
+#{_libdir}/v4l1compat.so
+#{_libdir}/v4l2convert.so
 %{_libdir}/libv4l/v4l1compat.so
 %{_libdir}/libv4l/v4l2convert.so
 %{_libdir}/libv4l/*-decomp
