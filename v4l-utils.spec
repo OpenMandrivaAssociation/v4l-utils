@@ -431,7 +431,7 @@ cat *.lang >%{name}-all.lang
 %{_bindir}/dvbv5-zap
 %{_bindir}/v4l2-sysfs-path
 %{_bindir}/media-ctl
-#{_sbindir}/v4l2-dbg
+%{_bindir}/v4l2-dbg
 %doc %{_mandir}/man1/ir-keytable.1*
 %doc %{_mandir}/man1/dvb-fe-tool.1*
 %doc %{_mandir}/man1/dvb-format-convert.1*
@@ -445,6 +445,7 @@ cat *.lang >%{name}-all.lang
 %doc %{_mandir}/man1/cec-follower.1*
 %doc %{_mandir}/man1/ir-ctl.1*
 %doc %{_mandir}/man5/rc_keymap.5*
+%doc %{_docdir}/v4l-utils/html/
 
 %files -n v4l-utils-qt5
 %if %{with graphics}
@@ -461,8 +462,6 @@ cat *.lang >%{name}-all.lang
 %files -n %{wrappersname}
 %dir %{_libdir}/libv4l
 %dir %{_libdir}/libv4l/plugins
-#{_libdir}/v4l1compat.so
-#{_libdir}/v4l2convert.so
 %{_libdir}/libv4l/v4l1compat.so
 %{_libdir}/libv4l/v4l2convert.so
 %{_libdir}/libv4l/*-decomp
