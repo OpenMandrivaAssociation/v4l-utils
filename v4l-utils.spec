@@ -368,8 +368,8 @@ pixelformats to v4l2 applications.
 %dir %{_prefix}/lib/libv4l/plugins
 %{_prefix}/lib/libv4l/*-decomp
 %{_prefix}/lib/libv4l/plugins/libv4l-mplane.so
-%{_prefix}/lib/v4l1compat.so
-%{_prefix}/lib/v4l2convert.so
+#{_prefix}/lib/v4l1compat.so
+#{_prefix}/lib/v4l2convert.so
 %{_prefix}/lib/libv4l/v4l1compat.so
 %{_prefix}/lib/libv4l/v4l2convert.so
 %endif
