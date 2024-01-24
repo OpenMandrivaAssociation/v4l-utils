@@ -431,7 +431,7 @@ cat *.lang >%{name}-all.lang
 %{_bindir}/dvbv5-zap
 %{_bindir}/v4l2-sysfs-path
 %{_bindir}/media-ctl
-%{_bindir}/v4l2-dbg
+%{_sbindir}/v4l2-dbg
 %doc %{_mandir}/man1/ir-keytable.1*
 %doc %{_mandir}/man1/dvb-fe-tool.1*
 %doc %{_mandir}/man1/dvb-format-convert.1*
