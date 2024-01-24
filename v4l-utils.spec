@@ -36,6 +36,7 @@ BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(json-c) >= 0.15
 %if %{with graphics}
+BuildRequires:  qmake5
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(Qt5Core)
@@ -376,7 +377,9 @@ pixelformats to v4l2 applications.
 %autosetup -p1
 
 %if %{with compat32}
-%meson32 --debug
+%meson32 --debug \
+                  -Dqv4l2=disabled \
+                  -Dqvidcap=disabled
 %endif
 
 %meson
