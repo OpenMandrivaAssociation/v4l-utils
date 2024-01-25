@@ -16,17 +16,21 @@
 %bcond_without graphics
 
 Name:		v4l-utils
-Version:	1.24.1
+Version:	1.26.1
 Release:	1
 Summary:	Linux V4L2 and DVB API utilities
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://git.linuxtv.org/v4l-utils.git
-Source0:	http://linuxtv.org/downloads/v4l-utils/%{name}-%{version}.tar.bz2
+Source0:	http://linuxtv.org/downloads/v4l-utils/%{name}-%{version}.tar.xz
 Source100:	%{name}.rpmlintrc
-Patch0:		v4l-utils-1.12.3-pthread.patch
-Patch1:		v4l-utils-1.8.0-use-system-jpeg.patch
-Patch2:		v4l-utils-1.20.0-qt-gles.patch
+#Patch0:		v4l-utils-1.12.3-pthread.patch
+#Patch1:		v4l-utils-1.8.0-use-system-jpeg.patch
+#Patch2:		v4l-utils-1.20.0-qt-gles.patch
+Patch3:     fix-dbg-install.patch
+
+BuildRequires:	meson
+BuildRequires:  gettext
 BuildRequires:	pkgconfig(libjpeg)
 BuildRequires:	sysfsutils-devel
 BuildRequires:	pkgconfig(libelf)
@@ -34,6 +38,7 @@ BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(json-c) >= 0.15
 %if %{with graphics}
+BuildRequires:  qmake5
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(Qt5Core)
@@ -364,8 +369,8 @@ pixelformats to v4l2 applications.
 %dir %{_prefix}/lib/libv4l/plugins
 %{_prefix}/lib/libv4l/*-decomp
 %{_prefix}/lib/libv4l/plugins/libv4l-mplane.so
-%{_prefix}/lib/v4l1compat.so
-%{_prefix}/lib/v4l2convert.so
+#{_prefix}/lib/v4l1compat.so
+#{_prefix}/lib/v4l2convert.so
 %{_prefix}/lib/libv4l/v4l1compat.so
 %{_prefix}/lib/libv4l/v4l2convert.so
 %endif
@@ -373,49 +378,34 @@ pixelformats to v4l2 applications.
 %prep
 %autosetup -p1
 
-autoheader
-autoconf
-export CONFIGURE_TOP="$(pwd)"
 %if %{with compat32}
-mkdir build32
-cd build32
-%configure32 \
-	--enable-libdvbv5 \
-	--with-libudev
-cd ..
+%meson32 --debug \
+                  -Dqv4l2=disabled \
+                  -Dqvidcap=disabled \
+                  -Dbpf=disabled \
+                  -Dgconv=disabled
 %endif
 
-mkdir build
-cd build
-CXXFLAGS="%{optflags} -std=gnu++14" %configure \
-	--enable-libdvbv5 \
-	--with-libudev
+%meson  \
+        -Dgconv=disabled
 
 %build
 %if %{with compat32}
-%make_build -C build32 || make -C build32
+%ninja_build -C build32
 %endif
-
-# ir-ctl makes heavy use of nested functions.
-# build it with gcc for now...
-%make_build -C build/utils/ir-ctl
-
-# (tpg) another one with VLAIS
-%make_build -C build/utils/keytable
-
-%make_build -C build
+%meson_build
 
 %install
 %if %{with compat32}
-%make_install -C build32 PREFIX="%{_prefix}" LIBDIR="%{_prefix}/lib"
+%ninja_install -C build32
 %endif
-%make_install -C build PREFIX="%{_prefix}" LIBDIR="%{_libdir}"
+%meson_install
 
 # already provided by ivtv-utils package, more uptodate/complete there
 rm -f %{buildroot}%{_bindir}/ivtv-ctl
 
+%find_lang %{name}
 %find_lang libdvbv5
-%find_lang v4l-utils
 cat *.lang >%{name}-all.lang
 
 %files -f %{name}-all.lang
@@ -442,7 +432,7 @@ cat *.lang >%{name}-all.lang
 %{_bindir}/dvbv5-zap
 %{_bindir}/v4l2-sysfs-path
 %{_bindir}/media-ctl
-%{_sbindir}/v4l2-dbg
+%{_bindir}/v4l2-dbg
 %doc %{_mandir}/man1/ir-keytable.1*
 %doc %{_mandir}/man1/dvb-fe-tool.1*
 %doc %{_mandir}/man1/dvb-format-convert.1*
@@ -456,6 +446,7 @@ cat *.lang >%{name}-all.lang
 %doc %{_mandir}/man1/cec-follower.1*
 %doc %{_mandir}/man1/ir-ctl.1*
 %doc %{_mandir}/man5/rc_keymap.5*
+%doc %{_docdir}/v4l-utils/html/
 
 %files -n v4l-utils-qt5
 %if %{with graphics}
@@ -472,8 +463,6 @@ cat *.lang >%{name}-all.lang
 %files -n %{wrappersname}
 %dir %{_libdir}/libv4l
 %dir %{_libdir}/libv4l/plugins
-%{_libdir}/v4l1compat.so
-%{_libdir}/v4l2convert.so
 %{_libdir}/libv4l/v4l1compat.so
 %{_libdir}/libv4l/v4l2convert.so
 %{_libdir}/libv4l/*-decomp

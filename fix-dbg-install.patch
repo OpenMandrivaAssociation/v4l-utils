@@ -1,0 +1,12 @@
+diff -uraN v4l-utils-1.26.1/utils/v4l2-dbg/meson.build omv-v4l-utils-1.26.1/utils/v4l2-dbg/meson.build
+--- v4l-utils-1.26.1/utils/v4l2-dbg/meson.build	2023-12-12 22:40:38.000000000 +0100
++++ omv-v4l-utils-1.26.1/utils/v4l2-dbg/meson.build	2024-01-25 17:47:45.558041899 +0100
+@@ -13,7 +13,7 @@
+ v4l2_dbg = executable('v4l2-dbg',
+                       v4l2_dbg_sources,
+                       install : true,
+-                      install_dir : 'sbin',
++                      install_dir : 'bin',
+                       include_directories : [
+                           v4l2_utils_incdir,
+                           utils_common_incdir,
