@@ -27,6 +27,7 @@ Source100:	%{name}.rpmlintrc
 #Patch0:		v4l-utils-1.12.3-pthread.patch
 #Patch1:		v4l-utils-1.8.0-use-system-jpeg.patch
 #Patch2:		v4l-utils-1.20.0-qt-gles.patch
+Patch3:     fix-dbg-install.patch
 
 BuildRequires:	meson
 BuildRequires:  gettext
@@ -431,7 +432,7 @@ cat *.lang >%{name}-all.lang
 %{_bindir}/dvbv5-zap
 %{_bindir}/v4l2-sysfs-path
 %{_bindir}/media-ctl
-%{_sbindir}/v4l2-dbg
+%{_bindir}/v4l2-dbg
 %doc %{_mandir}/man1/ir-keytable.1*
 %doc %{_mandir}/man1/dvb-fe-tool.1*
 %doc %{_mandir}/man1/dvb-format-convert.1*
