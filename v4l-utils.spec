@@ -421,6 +421,7 @@ cat *.lang >%{name}-all.lang
 %{_bindir}/ir-ctl
 %{_bindir}/cx18-ctl
 %{_bindir}/decode_tm6000
+%{_bindir}/edid-decode
 %{_bindir}/ir-keytable
 %{_bindir}/rds-ctl
 %{_bindir}/v4l2-compliance
@@ -438,6 +439,7 @@ cat *.lang >%{name}-all.lang
 %doc %{_mandir}/man1/dvb-format-convert.1*
 %doc %{_mandir}/man1/dvbv5-scan.1*
 %doc %{_mandir}/man1/dvbv5-zap.1*
+%doc %{_mandir}/man1/edid-decode.1.*
 %doc %{_mandir}/man1/v4l2-compliance.1*
 %doc %{_mandir}/man1/v4l2-ctl.1*
 %doc %{_mandir}/man1/v4l2-tracer.1*
