@@ -47,6 +47,7 @@ BuildRequires:	pkgconfig(Qt5Widgets)
 BuildRequires:	pkgconfig(Qt5OpenGL)
 %endif
 BuildRequires:	pkgconfig(alsa)
+BuildRequires:  pkgconfig(libcap)
 BuildRequires:	pkgconfig(libudev)
 BuildRequires:	pkgconfig(libbpf) >= 0.7
 BuildRequires:	pkgconfig(systemd)
