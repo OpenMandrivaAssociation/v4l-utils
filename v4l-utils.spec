@@ -132,7 +132,7 @@ Summary: Video4Linux tracing library
 Video4Linux tracing library
 
 %files -n %{libv4l2tracer}
-#{_libdir}/libv4l2tracer.so
+%{_libdir}/libv4l/libv4l2tracer.so
 
 %if %{with compat32}
 %lib32package dvbv5 %{major}
@@ -158,7 +158,7 @@ Summary: 32-Bit Video4Linux tracing library
 32-Bit Video4Linux tracing library
 
 %files -n %{lib32v4l2tracer}
-#{_prefix}/lib/libv4l2tracer.so
+%{_prefix}/lib/libv4l/libv4l2tracer.so
 %endif
 
 %package -n v4l-utils-qt5
