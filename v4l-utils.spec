@@ -60,6 +60,7 @@ Requires:	%{wrappersname} >= %{version}-%{release}
 Obsoletes:	%{oldname} < %{EVRD}
 
 %if %{with compat32}
+BuildRequires:  devel(libcap)
 BuildRequires:	devel(libjson-c)
 BuildRequires:	devel(libjpeg)
 BuildRequires:	devel(libelf)
